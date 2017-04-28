@@ -5,6 +5,10 @@ Requires FFMPEG installed locally.
 
 #Installation
 
+'$ npm install'
+
+'$ node app.js'
+
 #POST /wavToMp3
 
 Include file as binary in request body.  Use CURL or Postman with the service running locally.
