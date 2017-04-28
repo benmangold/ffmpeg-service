@@ -5,9 +5,9 @@ Requires FFMPEG installed locally.
 
 #Installation
 
-'$ npm install'
+> $ npm install
 
-'$ node app.js'
+> $ node app.js
 
 #POST /wavToMp3
 
