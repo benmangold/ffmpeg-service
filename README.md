@@ -3,12 +3,12 @@ An FFMPEG web service for audio utilities. Ex. Converting .wav files to .mp3 fil
 
 Requires FFMPEG installed locally.
 
-#Installation
+##Installation
 
 > $ npm install
 
 > $ node app.js
 
-#POST /wavToMp3
+###POST /wavToMp3
 
 Include file as binary in request body.  Use CURL or Postman with the service running locally.
