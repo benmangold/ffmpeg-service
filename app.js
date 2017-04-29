@@ -10,13 +10,6 @@ app.use(bodyParser.raw({ type: '*/*', limit: '200mb' }));
 
 app.get('/', function (req, res) {res.send('Hello World!')})
 
-app.get('/probe', function (req, res) {
-	ffmpeg.ffprobe('movie.avi', function(err, metadata) {
-	  	  console.log(require('util').inspect(metadata, false, null));
-		  res.send(require('util').inspect(metadata, false, null))
-	});
-})
-
 app.post('/probe', function (req, res) {
 	
 	fs.writeFileSync('probe', req.body, function(err) {console.log("ERROR " + err);});
