@@ -8,37 +8,43 @@ var app = express()
 
 app.use(bodyParser.raw({ type: '*/*', limit: '200mb' }));
 
-app.get('/', function (req, res) {
-	
-	// make sure you set the correct path to your video file
-	ffmpeg.ffprobe('movie.avi',function(err, metadata) {
-	  console.log(require('util').inspect(metadata, false, null));
-	});	
-	
-    res.send('Hello World!')
+app.get('/', function (req, res) {res.send('Hello World!')})
+
+app.get('/probe', function (req, res) {
+	ffmpeg.ffprobe('movie.avi', function(err, metadata) {
+	  	  console.log(require('util').inspect(metadata, false, null));
+		  res.send(require('util').inspect(metadata, false, null))
+	});
 })
 
-app.post('/wavToMp3', function (req, res) {
+app.post('/probe', function (req, res) {
 	
-	// console.log(req.body.length);
-	fs.writeFileSync('sample.wav', req.body, function(err) {console.log("ERROR " + err);});
+	fs.writeFileSync('probe', req.body, function(err) {console.log("ERROR " + err);});
 	
-	ffmpeg.ffprobe('sample.wav', function(err, metadata) {
-  	  console.log(require('util').inspect(metadata, false, null));
+	ffmpeg.ffprobe('probe', function(err, metadata) {
+	  	  console.log(require('util').inspect(metadata, false, null));
+	 	  fs.unlinkSync('probe');
+		  res.send(require('util').inspect(metadata, false, null))
 	});
+})
+
+app.post('/toMp3', function (req, res) {
+	// console.log(req.body.length);
+	fs.writeFileSync('sample', req.body, function(err) {console.log("ERROR " + err);});
 	
-	mp3Command = new ffmpeg('sample.wav')
-		.inputFormat('wav')
+	mp3Command = new ffmpeg('sample')
+		// .inputFormat('wav')
 		.audioCodec('libmp3lame')
      	.on('error', function(err) {
    			 console.log('An error occurred: ' + err.message);
   	   	 })
 		 .on('end', function() {
+		 	 fs.unlinkSync('sample');
     		 console.log('Processing finished !');
+		 	 res.download('sample.mp3');
+			 console.log('still here...');
   	   	 })
   	     .save('sample.mp3');
-	
-    res.send('Hello World!')
 })
 
 app.listen(3000, function () {

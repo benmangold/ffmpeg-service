@@ -3,7 +3,15 @@ An FFMPEG web service for audio utilities. Ex. Converting .wav files to .mp3 fil
 
 Requires FFMPEG installed locally.
 
+>> https://ffmpeg.org/download.html
+
 ## Installation
+
+Install node and npm:
+
+> $ sh install-node-npm.sh
+
+## Running the service
 
 > $ npm install
 
