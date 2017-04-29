@@ -26,7 +26,7 @@ ENV           FFMPEG_VERSION=2.8.1 \
               XVID_VERSION=1.3.4   \
               FDKAAC_VERSION=0.1.4 \
               X265_VERSION=1.8     \
-              NODEJS_VERSION=4.2.2 
+              NODEJS_VERSION=7.1.0 
 
 COPY          run.sh /tmp/run.sh
 

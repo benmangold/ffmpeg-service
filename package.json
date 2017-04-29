@@ -13,7 +13,7 @@
     "express": "^4.15.2",
     "ffmpeg": "0.0.4",
     "file-system": "^2.2.2",
-    "fluent-ffmpeg": "^2.1.2",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "fluent-ffmpeg": "^2.1.2"
   }
 }

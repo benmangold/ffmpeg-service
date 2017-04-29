@@ -22,22 +22,30 @@ app.post('/probe', function (req, res) {
 })
 
 app.post('/toMp3', function (req, res) {
-	// console.log(req.body.length);
-	fs.writeFileSync('sample', req.body, function(err) {console.log("ERROR " + err);});
+	console.log("REQ BODY LENGTH: " + req.body.length);
+	try {
+		fs.writeFileSync('sample.wav', req.body, function(err) {console.log("ERROR " + err)});
+	} catch (e) {
+		res.send('ERROR GETTING BODY ' + e)	}
 	
-	mp3Command = new ffmpeg('sample')
+	try {
+	    mp3Command = new ffmpeg('sample.wav')
 		// .inputFormat('wav')
 		.audioCodec('libmp3lame')
-     	.on('error', function(err) {
+     		.on('error', function(err) {
    			 console.log('An error occurred: ' + err.message);
   	   	 })
 		 .on('end', function() {
-		 	 fs.unlinkSync('sample');
-    		 console.log('Processing finished !');
+		 	 fs.unlinkSync('sample.wav');
+    		 	console.log('Processing finished !');
 		 	 res.download('sample.mp3');
 			 console.log('still here...');
   	   	 })
-  	     .save('sample.mp3');
+  	     	.save('sample.mp3');
+
+	} catch (e) {
+		res.send('ERROR WRITING MP3 ' + e)
+	}
 })
 
 app.listen(3000, function () {
