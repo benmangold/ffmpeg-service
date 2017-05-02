@@ -33,6 +33,10 @@ COPY          run.sh /tmp/run.sh
 # See https://github.com/Raman148/ffmpeg-nodejs/blob/master/run.sh
 RUN           bash /tmp/run.sh
 
+RUN cd $(npm root -g)/npm \
+ && npm install fs-extra \
+ && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
+
 # Let's make sure the app built correctly
 RUN           ffmpeg -buildconf
 
