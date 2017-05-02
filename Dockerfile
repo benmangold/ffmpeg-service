@@ -1,3 +1,14 @@
+# ffmpeg-nodejs
+#
+# FFMPEG-VERSION               2.8.1-1
+# NODEJS-VERSION               4.2.2
+# VERSION               
+#
+# From https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
+# From https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+#
+#
+
 FROM          centos:7
 MAINTAINER    Raman Nanda <Raman148@gmail.com>
 
