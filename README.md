@@ -4,7 +4,7 @@ An FFMPEG web service for converting audio files to mp3
 
 ### USAGE
 
-POST to this url using Postman or with a Curl command.
+POST to this service using Postman a Curl command.
 
 Include audio file as binary in request body 
 
@@ -14,9 +14,11 @@ https://www.dropbox.com/s/5exywmaj5o7cdn3/postMp3%20Postman%20Usage.png?dl=0
 
 Curl Ex:
 
-curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
+> curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
 
 ## Local Installation
+
+Download Repository from 
 
 Requires FFMPEG installation to use locally.
 
