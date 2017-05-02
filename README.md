@@ -1,22 +1,23 @@
-# ffmpeg-service
-An FFMPEG web service for audio utilities. Ex. Converting .wav files to .mp3 files
+# postMp3 ffmpeg web service
 
-Requires FFMPEG installed locally.
+An FFMPEG web service for converting audio files to mp3
+
+## Local Installation
+
+Requires FFMPEG installation to use locally.
 
 >> https://ffmpeg.org/download.html
 
-## Installation
-
-Install node and npm:
+Install node, dependencies, and start app:
 
 > $ sh install-node-npm.sh
-
-## Running the service
-
 > $ npm install
-
 > $ node app.js
 
-### POST /wavToMp3
+### USAGE
 
-Include file as binary in request body.  Use CURL or Postman with the service running locally.
+Include file as binary in request body using Postman or Curl command.
+
+![PostMp3 Postman Usage](../../Dropbox/Screenshots/postMp3%20Postman%20Usage.png)
+
+curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3

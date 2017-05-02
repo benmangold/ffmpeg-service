@@ -21,7 +21,7 @@ app.post('/probe', function (req, res) {
 	});
 })
 
-app.post('/toMp3', function (req, res) {
+app.post('/', function (req, res) {
 	console.log("REQ BODY LENGTH: " + req.body.length);
 	try {
 		fs.writeFileSync('sample.wav', req.body, function(err) {console.log("ERROR " + err)});
