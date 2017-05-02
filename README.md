@@ -16,17 +16,18 @@ Curl Ex:
 
 > curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
 
-## Local Installation
+## Running Locally
 
-Download Repository from 
+Install node
+> brew install node
 
 Requires FFMPEG installation to use locally.
 
 > https://ffmpeg.org/download.html
 
-Install node, dependencies, and start app:
+Install dependencies, and start app:
 
-> $ sh install-node-npm.sh
 > $ npm install
 > $ node app.js
 
+## Running Locally
