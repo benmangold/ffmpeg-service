@@ -4,6 +4,8 @@
 
 input
 
+node-ffmpeg.zip
+
 /node_modules
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
