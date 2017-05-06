@@ -16,18 +16,31 @@ Curl Ex:
 
 > curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
 
-## Running Locally
+## Running Local Node.js Web Service
 
-Install node
-> brew install node
+Requires local Node and FFMPEG installation.
 
-Requires FFMPEG installation to use locally.
-
+Install FFMPEG
 > https://ffmpeg.org/download.html
 
-Install dependencies, and start app:
+Install node
+> https://nodejs.org/en/download/
+> Using homebrew: $ brew install node
 
+Install dependencies, and start app:
 > $ npm install
 > $ node app.js
 
-## Running Locally
+## Running Local Docker Container
+
+Requires Docker
+
+Install Docker
+> https://www.docker.com
+
+Build Docker Image from Dockerfile
+> $ docker build -t <Image>/<Tag> .
+
+Launch Docker Container from Docker Image, exposing port 49160
+docker run -p 49160:3000 -d <Image>/<Tag>	
+	
