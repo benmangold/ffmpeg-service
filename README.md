@@ -12,9 +12,9 @@ GET /upload - Upload file form
 
 ### USAGE
 
-POST to /mp3 using Postman a Curl command.
+POST to /mp3 using Postman or a Curl command:
 
-Include audio file as binary in request body 
+Include audio file as binary in request body
 
 Postman Ex: 
 
