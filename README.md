@@ -47,7 +47,7 @@ Install Docker
 > https://www.docker.com
 
 Build Docker Image from Dockerfile
-> $ docker build -t <Image>/<Tag> .
+> $ docker build -t 'Image'/'Tag' .
 
 Launch Docker Container from Docker Image, exposing port 49160
 > docker run -p 49160:3000 -d <Image>/<Tag>	
