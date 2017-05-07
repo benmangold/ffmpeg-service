@@ -7,7 +7,8 @@ var path = require('path');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(bodyParser.raw({ type: '*/*', limit: '200mb' }));
+var fileParser = bodyParser.urlencoded({ extended: false });
+var bodyParser = bodyParser.raw({ type: '*/*', limit: '200mb' });
 
 require('express-readme')(app, {
 	filename: 'README.md',
@@ -18,7 +19,7 @@ app.get('/upload', function (req, res){
 	res.sendFile(__dirname + '/views/upload.html');
 });
 
-app.post('/upload', function (req, res){
+app.post('/upload', fileParser, function (req, res){
 	var form = new formidable.IncomingForm();
 
 	form.parse(req);
@@ -34,7 +35,7 @@ app.post('/upload', function (req, res){
     	res.sendFile(__dirname + '/views/upload.html');
 });
 
-app.post('/mp3', function (req, res) {
+app.post('/mp3', bodyParser, function (req, res) {
 	
 	console.log("REQ BODY LENGTH: " + req.body.length);
 	try {
