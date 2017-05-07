@@ -3,6 +3,9 @@
 *.wav
 *.zip
 
+.gitignore
+.dockerignore
+
 uploads
 test
 public
