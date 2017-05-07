@@ -15,7 +15,7 @@ require('express-readme')(app, {
 });
 
 app.get('/upload', function (req, res){
-	res.sendFile(__dirname + '/upload.html');
+	res.sendFile(__dirname + '/views/upload.html');
 });
 
 app.post('/upload', function (req, res){
@@ -31,7 +31,7 @@ app.post('/upload', function (req, res){
         	console.log('Uploaded ' + file.name);
     	});
 
-    	res.sendFile(__dirname + '/upload.html');
+    	res.sendFile(__dirname + '/views/upload.html');
 });
 
 app.post('/mp3', function (req, res) {
