@@ -3,9 +3,9 @@
 *.wav
 *.zip
 
-/uploads
-
-/public
+uploads
+test
+public
 
 input
 
