@@ -3,6 +3,10 @@
 *.wav
 *.zip
 
+/uploads
+
+/public
+
 input
 
 node-ffmpeg.zip
