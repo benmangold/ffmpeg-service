@@ -4,13 +4,13 @@ An FFMPEG web service for converting audio files to mp3
 
 ##Endpoints
 
-POST /mp3 - Convert audio file in request body to mp3 and return result for download
+> POST /mp3 - Convert audio file in request body to mp3 and return result for download
 
-GET /, /readme - Web Service Readme
+> GET /, /readme - Web Service Readme
 
-GET /upload - Upload file form
+> GET /upload - Upload file form - Saves file to /uploads folder on server
 
-### USAGE
+### /mp3
 
 POST to /mp3 using Postman or a Curl command:
 

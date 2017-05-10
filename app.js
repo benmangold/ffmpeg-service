@@ -1,9 +1,12 @@
 var express = require('express');
 var formidable = require('formidable');
 var bodyParser = require('body-parser');
-const fs = require('fs');
 var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
+
+const fs = require('fs');
+
+var consts = require(__dirname + '/constants.js');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -20,45 +23,65 @@ app.get('/upload', function (req, res){
 });
 
 app.post('/upload', fileParser, function (req, res){
+	
 	var form = new formidable.IncomingForm();
-
 	form.parse(req);
-
 	form.on('fileBegin', function (name, file){
 		file.path = __dirname + '/uploads/' + file.name;
     	});
-
     	form.on('file', function (name, file){
         	console.log('Uploaded ' + file.name);
     	});
-
     	res.sendFile(__dirname + '/views/upload.html');
 });
 
 app.post('/mp3', bodyParser, function (req, res) {
-	
-	console.log("REQ BODY LENGTH: " + req.body.length);
+		
 	try {
-		fs.writeFileSync('sample.wav', req.body, function(err) {console.log("ERROR " + err)});
+		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
 	} catch (e) {
 		res.status(500)
-		res.send('ERROR GETTING BODY ' + e)	
+		res.send('ERROR GETTING FILE ' + e)	
 	}
 	try {	
-		mp3Command = new ffmpeg('sample.wav')
-		.audioCodec('libmp3lame')
+		ffmpegConvertCommand = new ffmpeg('input')
+		.audioCodec(consts.MP3_CODEC)
      		.on('error', function(err) {
-   			console.log('An error occurred: ' + err.message);
+   			console.log('ERROR CONVERTING d: ' + err.message);
   	   	 })
 		 .on('end', function() {
-		 	 fs.unlinkSync('sample.wav');
-		 	 res.download('sample.mp3');
+		 	 fs.unlinkSync('input');
+		 	 res.download('output.mp3');
   	   	 })
-  	     	.save('sample.mp3');	
+  	     	.save('output.mp3');	
 	} catch (e) {
 		res.status(500)
-		res.send('ERROR WRITING MP3 ' + e)
-	}	
+		res.send('ERROR WRITING FILE ' + e)
+	}
+})
+
+app.post('/m4a', bodyParser, function (req, res) {	
+	try {
+		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
+	} catch (e) {
+		res.status(500)
+		res.send('ERROR GETTING FILE ' + e)	
+	}
+	try {	
+		ffmpegConvertCommand = new ffmpeg('input')
+		.audioCodec(consts.M4A_CODEC )
+     		.on('error', function(err) {
+   			console.log('ERROR CONVERTING d: ' + err.message);
+  	   	 })
+		 .on('end', function() {
+		 	 fs.unlinkSync('input');
+		 	 res.download('output.m4a');
+  	   	 })
+  	     	.save('output.m4a');	
+	} catch (e) {
+		res.status(500)
+		res.send('ERROR WRITING FILE ' + e)
+	}
 })
 
 app.listen(3000, function () {
