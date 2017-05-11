@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
     "express": "^4.15.2",
     "express-formidable": "^1.0.0",
     "express-readme": "0.0.5",

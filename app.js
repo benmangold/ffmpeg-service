@@ -8,6 +8,8 @@ const fs = require('fs');
 
 var consts = require(__dirname + '/constants.js');
 
+var encoder = require(__dirname + '/encoder.js');
+
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 var fileParser = bodyParser.urlencoded({ extended: false });
@@ -36,28 +38,21 @@ app.post('/upload', fileParser, function (req, res){
 });
 
 app.post('/mp3', bodyParser, function (req, res) {
-		
-	try {
-		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR GETTING FILE ' + e)	
-	}
-	try {	
-		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.MP3_CODEC)
-     		.on('error', function(err) {
-   			console.log('ERROR CONVERTING d: ' + err.message);
-  	   	 })
-		 .on('end', function() {
-		 	 fs.unlinkSync('input');
-		 	 res.download('output.mp3');
-  	   	 })
-  	     	.save('output.mp3');	
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR WRITING FILE ' + e)
-	}
+	
+	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
+		console.log("WORKING CALLBACK" + val);
+		res.download(__dirname + "/" + val)
+	})
+	
+	
+	// try{
+// 		var mp3name = encoder.encode(req.body, consts.MP3_CODEC)
+// 			res.download(__dirname + "/" + result)
+// 		});
+// 	} catch (e) {
+// 		res.status(500)
+// 		res.send('ERROR ENCODING: ' + e)
+// 	}
 })
 
 app.post('/m4a', bodyParser, function (req, res) {	
