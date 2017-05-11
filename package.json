@@ -4,7 +4,7 @@
   "description": "audio utilities",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +23,8 @@
     "path": "^0.12.7",
     "really-need": "^1.9.2",
     "supertest": "^3.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.3.0"
   }
 }
