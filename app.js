@@ -43,16 +43,6 @@ app.post('/mp3', bodyParser, function (req, res) {
 		console.log("WORKING CALLBACK" + val);
 		res.download(__dirname + "/" + val)
 	})
-	
-	
-	// try{
-// 		var mp3name = encoder.encode(req.body, consts.MP3_CODEC)
-// 			res.download(__dirname + "/" + result)
-// 		});
-// 	} catch (e) {
-// 		res.status(500)
-// 		res.send('ERROR ENCODING: ' + e)
-// 	}
 })
 
 app.post('/m4a', bodyParser, function (req, res) {	
@@ -82,3 +72,5 @@ app.post('/m4a', bodyParser, function (req, res) {
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!')
 })
+
+module.exports = app;
