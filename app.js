@@ -54,7 +54,7 @@ app.post('/m4a', bodyParser, function (req, res) {
 	}
 	try {	
 		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.M4A_CODEC )
+		.audioCodec(consts.M4A_CODEC)
      		.on('error', function(err) {
    			console.log('ERROR CONVERTING d: ' + err.message);
   	   	 })
