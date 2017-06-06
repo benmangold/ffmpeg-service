@@ -23,7 +23,7 @@ app.get('/upload', function (req, res){
 });
 
 app.post('/upload', fileParser, function (req, res){
-	
+
 	var form = new formidable.IncomingForm();
 	form.parse(req);
 	form.on('fileBegin', function (name, file){
@@ -36,14 +36,14 @@ app.post('/upload', fileParser, function (req, res){
 });
 
 app.post('/mp3', bodyParser, function (req, res) {
-		
+
 	try {
 		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
 	} catch (e) {
 		res.status(500)
-		res.send('ERROR GETTING FILE ' + e)	
+		res.send('ERROR GETTING FILE ' + e)
 	}
-	try {	
+	try {
 		ffmpegConvertCommand = new ffmpeg('input')
 		.audioCodec(consts.MP3_CODEC)
      		.on('error', function(err) {
@@ -53,21 +53,24 @@ app.post('/mp3', bodyParser, function (req, res) {
 		 	 fs.unlinkSync('input');
 		 	 res.download('output.mp3');
   	   	 })
-  	     	.save('output.mp3');	
+  	     	.save('output.mp3');
 	} catch (e) {
 		res.status(500)
 		res.send('ERROR WRITING FILE ' + e)
 	}
 })
 
-app.post('/m4a', bodyParser, function (req, res) {	
+app.post('/m4a', bodyParser, function (req, res) {
 	try {
 		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
 	} catch (e) {
 		res.status(500)
-		res.send('ERROR GETTING FILE ' + e)	
+		res.send('ERROR GETTING FILE ' + e)
 	}
-	try {	
+
+
+
+	try {
 		ffmpegConvertCommand = new ffmpeg('input')
 		.audioCodec(consts.M4A_CODEC )
      		.on('error', function(err) {
@@ -77,11 +80,13 @@ app.post('/m4a', bodyParser, function (req, res) {
 		 	 fs.unlinkSync('input');
 		 	 res.download('output.m4a');
   	   	 })
-  	     	.save('output.m4a');	
+  	     	.save('output.m4a');
 	} catch (e) {
 		res.status(500)
 		res.send('ERROR WRITING FILE ' + e)
 	}
+
+
 })
 
 app.listen(3000, function () {
