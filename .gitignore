@@ -1,6 +1,6 @@
 *.avi
 *.mp3
-*.wav
+*.m4a
 *.zip
 
 .dockerignore
