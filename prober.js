@@ -1,3 +1,0 @@
-exports.probe = function(audio) {
-	
-};
