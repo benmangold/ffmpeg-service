@@ -5,9 +5,7 @@ var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
 
 const fs = require('fs');
-
 var consts = require(__dirname + '/constants.js');
-
 var encoder = require(__dirname + '/encoder.js');
 
 var app = express();
