@@ -5,8 +5,8 @@ var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
 
 const fs = require('fs');
-
 var consts = require(__dirname + '/constants.js');
+var encoder = require(__dirname + '/encoder.js');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -36,28 +36,11 @@ app.post('/upload', fileParser, function (req, res){
 });
 
 app.post('/mp3', bodyParser, function (req, res) {
-		
-	try {
-		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR GETTING FILE ' + e)	
-	}
-	try {	
-		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.MP3_CODEC)
-     		.on('error', function(err) {
-   			console.log('ERROR CONVERTING d: ' + err.message);
-  	   	 })
-		 .on('end', function() {
-		 	 fs.unlinkSync('input');
-		 	 res.download('output.mp3');
-  	   	 })
-  	     	.save('output.mp3');	
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR WRITING FILE ' + e)
-	}
+	
+	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
+		console.log("WORKING CALLBACK" + val);
+		res.download(__dirname + "/" + val)
+	})
 })
 
 app.post('/m4a', bodyParser, function (req, res) {	
@@ -69,7 +52,7 @@ app.post('/m4a', bodyParser, function (req, res) {
 	}
 	try {	
 		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.M4A_CODEC )
+		.audioCodec(consts.M4A_CODEC)
      		.on('error', function(err) {
    			console.log('ERROR CONVERTING d: ' + err.message);
   	   	 })
@@ -87,3 +70,5 @@ app.post('/m4a', bodyParser, function (req, res) {
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!')
 })
+
+module.exports = app;
