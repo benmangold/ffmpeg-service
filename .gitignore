@@ -6,7 +6,6 @@
 .dockerignore
 .ebextensions
 
-test
 public
 
 input
