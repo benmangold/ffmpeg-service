@@ -4,6 +4,7 @@ var consts = require(__dirname + '/constants.js');
 
 
 exports.encode = function(file, format, callback) {
+	
 	var extension = '';
 	if(format == consts.MP3_CODEC) {
 		extension = '.mp3';
@@ -11,19 +12,14 @@ exports.encode = function(file, format, callback) {
 		extension = '.m4a';
 	}
 	
-	try {
-		fs.writeFileSync('input', file, function(err) {console.log("ERROR " + err)});
-	} catch (e) {
-		e += 'ERROR GETTING FILE ';
-		throw e;	
-	}
-	
-	ffmpegCall(format, function(val) {
-		console.log('call call  ' + val);
-		callback(val);
+	//write input to disk and call ffmpeg conversion 
+	writeInputFile(file, function() {
+		ffmpegCall(format, function(val) {
+			callback(val);
+		});
 	});
 	
-function ffmpegCall(format, callback) {
+	function ffmpegCall(format, callback) {
 		ffmpegConvertCommand = new ffmpeg('input')
 			.audioCodec(format)
 			.on('error', function(err) {
@@ -34,5 +30,12 @@ function ffmpegCall(format, callback) {
 				 callback('output' + extension);
 	  	})
 			.save('output' + extension);	
+	}
+
+	function writeInputFile(file, callback) {
+			fs.writeFileSync('input', file, function(err) {
+				callback("ERROR WRITING INPUT " + err)
+			});
+			callback();
 	}
 }

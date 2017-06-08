@@ -32,5 +32,4 @@ describe('Encoder', function() {
 			});
 		});
 	});
-	
 });

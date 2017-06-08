@@ -18,6 +18,25 @@ require('express-readme')(app, {
 	routes: ['/', '/readme']
 });
 
+app.post('/mp3', bodyParser, function (req, res) {
+	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
+		res.download(__dirname + "/" + val);
+	})
+})
+
+app.post('/m4a', bodyParser, function (req, res) {
+	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
+		res.download(__dirname + "/" + val);
+	})
+})
+
+
+
+
+
+
+
+
 app.get('/upload', function (req, res){
 	res.sendFile(__dirname + '/views/upload.html');
 });
@@ -34,17 +53,6 @@ app.post('/upload', fileParser, function (req, res){
     	res.sendFile(__dirname + '/views/upload.html');
 });
 
-app.post('/mp3', bodyParser, function (req, res) {
-	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
-		res.download(__dirname + "/" + val);
-	})
-})
-
-app.post('/m4a', bodyParser, function (req, res) {
-	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
-		res.download(__dirname + "/" + val);
-	})
-})
 
 app.listen(3000, function () {
 	console.log('app listening on port 3000!')
