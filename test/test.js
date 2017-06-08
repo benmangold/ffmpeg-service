@@ -16,7 +16,6 @@ describe('Encoder', function() {
 	describe('#encodeMP3', function() {
 		it('should return the encoded filename', function() {
 			encoder.encode(fs.readFileSync(__dirname + '/test.wav'), consts.MP3_CODEC, function(val) {
-				console.log('END OF TEST CALLBACK');
 				assert.equal (val,'output.mp3');
 				done();
 			});
@@ -26,7 +25,17 @@ describe('Encoder', function() {
 	describe('#encodeM4A', function () {
 		it('should return the encoded filename', function() {
 			encoder.encode(fs.readFileSync(__dirname + '/test.wav'), consts.M4A_CODEC, function(val) {
-				// assert.equal(val,'output.m4a');
+				console.log('CALLALLALALAL');
+				assert.equal(val,'output.m4a');
+				done();
+			});
+		})
+	});
+	
+	describe('#encoderError', function () {
+		it('should return consts.FFMPEG_ERROR', function() {
+			encoder.encode(fs.readFileSync(__dirname + '/test.wav'), consts.M4A_CODEC, function(val) {
+				assert.equal(val,consts.FFMPEG_ERROR);
 				done();
 			});
 		})

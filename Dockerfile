@@ -1,4 +1,4 @@
-FROM ampervue/ffmpeg
+ FROM ampervue/ffmpeg
 
 # https://github.com/ampervue/docker-fluent-ffmpeg
 # https://hub.docker.com/r/dkarchmervue/fluent-ffmpeg/

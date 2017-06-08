@@ -4,9 +4,7 @@ var consts = require(__dirname + '/constants.js');
 
 
 exports.encode = function(file, format, callback) {
-	
 	var extension = '';
-	
 	if(format == consts.MP3_CODEC) {
 		extension = '.mp3';
 	} if(format == consts.M4A_CODEC) {
@@ -22,30 +20,19 @@ exports.encode = function(file, format, callback) {
 	
 	ffmpegCall(format, function(val) {
 		console.log('call call  ' + val);
-		// return(val);
 		callback(val);
 	});
 	
 function ffmpegCall(format, callback) {
-	console.log('calling ffmpeg');
-	// try {
 		ffmpegConvertCommand = new ffmpeg('input')
 			.audioCodec(format)
 			.on('error', function(err) {
-						console.log('FF ERROR')
-	   				console.log('ERROR CONVERTING : ' + err.message);
+				callback(consts.FFMPEG_ERROR);
 			})
 			.on('end', function() {
 			 	 fs.unlinkSync('input');
-				 console.log('FF END')
-				 // done();
 				 callback('output' + extension);
 	  	})
 			.save('output' + extension);	
-		// }
-		// catch (e) {
-		// 	e += 'ERROR WRITING FILE ';
-		// 	throw e;
-		// }
 	}
 }

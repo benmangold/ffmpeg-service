@@ -1,18 +1,20 @@
 # postMp3 ffmpeg web service
 
-An FFMPEG web service for converting audio files to mp3
+An FFMPEG web service for converting audio files
 
 ##Endpoints
 
 > POST /mp3 - Convert audio file in request body to mp3 and return result for download
 
+> POST /m4a - Convert audio file in request body to mp3 and return result for download
+
 > GET /, /readme - Web Service Readme
 
 > GET /upload - Upload file form - Saves file to /uploads folder on server
 
-### /mp3
+### /mp3, /m4a
 
-POST to /mp3 using Postman or a Curl command:
+POST to /mp3 or /m4a using Postman or a Curl command:
 
 Include audio file as binary in request body
 
@@ -24,20 +26,25 @@ Curl Ex:
 
 > curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
 
-## Running Local Node.js Web Service
+## Dev - Running Local Node.js Web Service
 
 Requires local Node and FFMPEG installation.
 
-Install FFMPEG
-> https://ffmpeg.org/download.html
+1) Install FFMPEG https://ffmpeg.org/download.html
 
-Install node
-> https://nodejs.org/en/download/
-> Using homebrew: $ brew install node
+2) Install node https://nodejs.org/en/download/
+Using homebrew:
+> $ brew install node
 
-Install dependencies, and start app:
+3) Navigate to project directory and:
+Install dependencies:
 > $ npm install
+
+Start app:
 > $ node app.js
+
+Check for errors with ESLint:
+> $ ./node_modules/.bin/eslint .
 
 ## Running Local Docker Container
 
@@ -51,4 +58,3 @@ Build Docker Image from Dockerfile
 
 Launch Docker Container from Docker Image, exposing port 49160
 > docker run -p 49160:3000 -d 'Image'/'Tag'	
-	
