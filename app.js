@@ -43,30 +43,36 @@ app.post('/mp3', bodyParser, function (req, res) {
 })
 
 app.post('/m4a', bodyParser, function (req, res) {
-	try {
-		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR GETTING FILE ' + e)
-	}
-
-
-
-	try {
-		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.M4A_CODEC)
-     		.on('error', function(err) {
-   			console.log('ERROR CONVERTING d: ' + err.message);
-  	   	 })
-		 .on('end', function() {
-		 	 fs.unlinkSync('input');
-		 	 res.download('output.m4a');
-  	   	 })
-  	     	.save('output.m4a');
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR WRITING FILE ' + e)
-	}
+	
+	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
+		console.log('controller callback ' + val);
+		res.download(__dirname + "/" + val);
+	})
+	
+	
+	
+	// try {
+	// 	fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
+	// } catch (e) {
+	// 	res.status(500)
+	// 	res.send('ERROR GETTING FILE ' + e)
+	// }
+	//
+	// try {
+	// 	ffmpegConvertCommand = new ffmpeg('input')
+	// 	.audioCodec(consts.M4A_CODEC)
+	//      		.on('error', function(err) {
+	//    			console.log('ERROR CONVERTING d: ' + err.message);
+	//   	   	 })
+	// 	 .on('end', function() {
+	// 	 	 fs.unlinkSync('input');
+	// 	 	 res.download('output.m4a');
+	//   	   	 })
+	//   	     	.save('output.m4a');
+	// } catch (e) {
+	// 	res.status(500)
+	// 	res.send('ERROR WRITING FILE ' + e)
+	// }
 
 
 })
