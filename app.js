@@ -36,36 +36,10 @@ app.post('/upload', fileParser, function (req, res){
 });
 
 app.post('/mp3', bodyParser, function (req, res) {
-<<<<<<< HEAD
-
-	try {
-		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR GETTING FILE ' + e)
-	}
-	try {
-		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.MP3_CODEC)
-     		.on('error', function(err) {
-   			console.log('ERROR CONVERTING d: ' + err.message);
-  	   	 })
-		 .on('end', function() {
-		 	 fs.unlinkSync('input');
-		 	 res.download('output.mp3');
-  	   	 })
-  	     	.save('output.mp3');
-	} catch (e) {
-		res.status(500)
-		res.send('ERROR WRITING FILE ' + e)
-	}
-=======
-	
 	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
-		console.log("WORKING CALLBACK" + val);
-		res.download(__dirname + "/" + val)
+		console.log('controller callback ' + val);
+		res.download(__dirname + "/" + val);
 	})
->>>>>>> 4142d2fb2db235461a4165cbc075068fa157bcb8
 })
 
 app.post('/m4a', bodyParser, function (req, res) {
@@ -98,10 +72,7 @@ app.post('/m4a', bodyParser, function (req, res) {
 })
 
 app.listen(3000, function () {
-	console.log('Example app listening on port 3000!')
+	console.log('app listening on port 3000!')
 })
-<<<<<<< HEAD
-=======
 
 module.exports = app;
->>>>>>> 4142d2fb2db235461a4165cbc075068fa157bcb8
