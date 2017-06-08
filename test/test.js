@@ -20,7 +20,7 @@ describe('Encoder', function() {
 				assert.equal(val,'output.m4a');
 				done();
 			});
-		})
+		});
 	});
 	
 	describe('#encoderError', function () {
@@ -30,8 +30,7 @@ describe('Encoder', function() {
 				value = val;
 				done();
 			});
-	
-		})
+		});
 	});
 	
 });
