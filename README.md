@@ -36,7 +36,8 @@ Requires local Node and FFMPEG installation.
 Using homebrew:
 > $ brew install node
 
-3) Navigate to project directory and:
+Navigate to project directory and:
+
 Install dependencies:
 > $ npm install
 
