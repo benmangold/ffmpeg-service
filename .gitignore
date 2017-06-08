@@ -3,6 +3,8 @@
 *.m4a
 *.zip
 
+output.m4a
+
 .dockerignore
 .ebextensions
 
