@@ -5,8 +5,8 @@ var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
 
 const fs = require('fs');
-
 var consts = require(__dirname + '/constants.js');
+var encoder = require(__dirname + '/encoder.js');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -36,6 +36,7 @@ app.post('/upload', fileParser, function (req, res){
 });
 
 app.post('/mp3', bodyParser, function (req, res) {
+<<<<<<< HEAD
 
 	try {
 		fs.writeFileSync('input', req.body, function(err) {console.log("ERROR " + err)});
@@ -58,6 +59,13 @@ app.post('/mp3', bodyParser, function (req, res) {
 		res.status(500)
 		res.send('ERROR WRITING FILE ' + e)
 	}
+=======
+	
+	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
+		console.log("WORKING CALLBACK" + val);
+		res.download(__dirname + "/" + val)
+	})
+>>>>>>> 4142d2fb2db235461a4165cbc075068fa157bcb8
 })
 
 app.post('/m4a', bodyParser, function (req, res) {
@@ -72,7 +80,7 @@ app.post('/m4a', bodyParser, function (req, res) {
 
 	try {
 		ffmpegConvertCommand = new ffmpeg('input')
-		.audioCodec(consts.M4A_CODEC )
+		.audioCodec(consts.M4A_CODEC)
      		.on('error', function(err) {
    			console.log('ERROR CONVERTING d: ' + err.message);
   	   	 })
@@ -92,3 +100,8 @@ app.post('/m4a', bodyParser, function (req, res) {
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!')
 })
+<<<<<<< HEAD
+=======
+
+module.exports = app;
+>>>>>>> 4142d2fb2db235461a4165cbc075068fa157bcb8
