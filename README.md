@@ -26,7 +26,8 @@ Curl Ex:
 
 > curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
 
-## Dev - Running Local Node.js Web Service
+
+## Installation
 
 Requires local Node and FFMPEG installation.
 
@@ -35,6 +36,8 @@ Requires local Node and FFMPEG installation.
 2) Install node https://nodejs.org/en/download/
 Using homebrew:
 > $ brew install node
+
+## Dev - Running Local Node.js Web Service
 
 Navigate to project directory and:
 
@@ -46,6 +49,9 @@ Start app:
 
 Check for errors with ESLint:
 > $ ./node_modules/.bin/eslint .
+
+Run unit tests with Mocha:
+> $ ./node_modules/.bin/mocha
 
 ## Running Local Docker Container
 
