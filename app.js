@@ -3,8 +3,8 @@ var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
-
 const fs = require('fs');
+
 var consts = require(__dirname + '/app/constants.js');
 var encoder = require(__dirname + '/app/encoder.js');
 
