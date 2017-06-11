@@ -21,12 +21,24 @@ require('express-readme')(app, {
 app.post('/mp3', bodyParser, function (req, res) {
 	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
 		res.download(__dirname + "/" + val);
+		fs.unlinkSync(__dirname + "/" + val);
 	})
 })
 
 app.post('/m4a', bodyParser, function (req, res) {
 	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
 		res.download(__dirname + "/" + val);
+		fs.unlink(__dirname + "/" + val, function(err) {
+    if(err && err.code == 'ENOENT') {
+        // file doens't exist
+        console.info("File doesn't exist, won't remove it.");
+    } else if (err) {
+        // maybe we don't have enough permission
+        console.error("Error occurred while trying to remove file");
+    } else {
+        console.info(`removed`);
+    }
+	});
 	})
 })
 
