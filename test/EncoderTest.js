@@ -13,7 +13,6 @@ describe('Encoder', function() {
 			});
 		});
 	});
-	
 	describe('#encodeM4A', function () {
 		it('should return the encoded filename', function(done) {
 			encoder.encode(fs.readFileSync(__dirname + '/test.wav'), consts.M4A_CODEC, function(val) {
@@ -22,7 +21,6 @@ describe('Encoder', function() {
 			});
 		});
 	});
-	
 	describe('#encoderError', function () {
 		it('should return consts.FFMPEG_ERROR', function(done) {
 			encoder.encode(fs.readFileSync(__dirname + '/corrupted.wav'), consts.M4A_CODEC, function(val) {
