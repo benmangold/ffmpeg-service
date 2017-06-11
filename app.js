@@ -20,13 +20,17 @@ require('express-readme')(app, {
 
 app.post('/mp3', bodyParser, function (req, res) {
 	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
-		res.download(__dirname + "/" + val);
+		var filePath = __dirname + "/" + val;
+		res.download(filePath);
+		deleteFile(filePath);
 	})
 })
 
 app.post('/m4a', bodyParser, function (req, res) {
 	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
-		res.download(__dirname + "/" + val);
+		var filePath = __dirname + "/" + val;
+		res.download(filePath);
+		deleteFile(filePath);
 	})
 })
 
@@ -49,5 +53,18 @@ app.post('/upload', fileParser, function (req, res){
 app.listen(3000, function () {
 	console.log('app listening on port 3000!')
 })
+
+function deleteFile(filePath) {
+	fs.stat(filePath, function (err) {
+	   if (err) {
+	       return console.error(err);
+	   }
+	   fs.unlink(filePath,function(err){
+	        if(err) return console.log(err);
+	        console.log('file deleted successfully');
+	   });  
+	});
+}
+
 
 module.exports = app;
