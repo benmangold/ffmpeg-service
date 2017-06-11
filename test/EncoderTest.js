@@ -1,8 +1,8 @@
 var assert = require('assert');
 const fs = require('fs');
 
-var encoder = require('../encoder.js');
-var consts = require('../constants.js');
+var encoder = require('../app/encoder.js');
+var consts = require('../app/constants.js');
 
 describe('Encoder', function() {
 	describe('#encodeMP3', function() {
