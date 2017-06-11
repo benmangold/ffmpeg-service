@@ -5,8 +5,8 @@ var ffmpeg = require('fluent-ffmpeg');
 var path = require('path');
 
 const fs = require('fs');
-var consts = require(__dirname + '/constants.js');
-var encoder = require(__dirname + '/encoder.js');
+var consts = require(__dirname + '/app/constants.js');
+var encoder = require(__dirname + '/app/encoder.js');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,7 +31,7 @@ app.post('/m4a', bodyParser, function (req, res) {
 })
 
 app.get('/upload', function (req, res){
-	res.sendFile(__dirname + '/views/upload.html');
+	res.sendFile(__dirname + '/app/views/upload.html');
 });
 
 app.post('/upload', fileParser, function (req, res){
@@ -43,9 +43,8 @@ app.post('/upload', fileParser, function (req, res){
     	form.on('file', function (name, file){
         	console.log('Uploaded ' + file.name);
     	});
-    	res.sendFile(__dirname + '/views/upload.html');
+    	res.sendFile(__dirname + '/app/views/upload.html');
 });
-
 
 app.listen(3000, function () {
 	console.log('app listening on port 3000!')
