@@ -10,8 +10,6 @@ An web service for converting audio files using Nodejs, Express and FFMPEG
 
 > GET /, /readme - Web Service Readme
 
-> GET /upload - Upload file form - Saves file to /uploads folder on server
-
 ### /mp3, /m4a
 
 POST to /mp3 or /m4a using Postman or a Curl command:
