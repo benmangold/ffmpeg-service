@@ -1,6 +1,13 @@
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const consts = require(__dirname + '/constants.js');
+
+/**
+ * encode an audio file to specified format
+ * @param {file} audio file as bytes
+ * @param {string} target format for encoding
+ * @param {function} callback called upon completion
+ */
 exports.encode = function(file, format, callback) {
 	let extension = '';
 	if (format == consts.MP3_CODEC) {
@@ -34,7 +41,7 @@ exports.encode = function(file, format, callback) {
 	}
 	/** Writes unencoded file to disk
 	 * @param {string} file - Unencoded audio file
- 	 * @param {string} callback - Function called upon completed writing
+ 	 * @param {function} callback - Function called upon completed writing
 	 */
 	function writeInputFile(file, callback) {
 			fs.writeFileSync('input', file, function(err) {
