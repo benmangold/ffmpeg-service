@@ -1,16 +1,14 @@
-# postMp3 ffmpeg web service
+# ffmpeg web service
 
-An FFMPEG web service for converting audio files
+An web service for converting audio files using Nodejs, Express and FFMPEG
 
-##Endpoints
+## Endpoints
 
 > POST /mp3 - Convert audio file in request body to mp3 and return result for download
 
 > POST /m4a - Convert audio file in request body to mp3 and return result for download
 
 > GET /, /readme - Web Service Readme
-
-> GET /upload - Upload file form - Saves file to /uploads folder on server
 
 ### /mp3, /m4a
 
@@ -25,7 +23,6 @@ https://www.dropbox.com/s/5exywmaj5o7cdn3/postMp3%20Postman%20Usage.png?dl=0
 Curl Ex:
 
 > curl --request POST --data-binary "@file.wav"  127.0.0.1:3000/ -o file.mp3
-
 
 ## Installation
 

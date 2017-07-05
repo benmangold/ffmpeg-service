@@ -22,6 +22,7 @@ app.post('/mp3', rawBodyParser, function(req, res) {
 	});
 });
 
+
 app.post('/m4a', rawBodyParser, function(req, res) {
 	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
 		res.download(__dirname + '/' + val);
@@ -47,5 +48,19 @@ app.post('/upload', fileParser, function(req, res) {
 app.listen(3000, function() {
 	console.log('app listening on port 3000!');
 });
+
+
+function deleteFile(filePath) {
+	fs.stat(filePath, function (err) {
+	   if (err) {
+	       return console.error(err);
+	   }
+	   fs.unlink(filePath,function(err){
+	        if(err) return console.log(err);
+	        console.log('file deleted successfully');
+	   });  
+	});
+}
+
 
 module.exports = app;
