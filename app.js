@@ -2,8 +2,8 @@ const path = require('path');
 const express = require('express');
 const formidable = require('formidable');
 const bodyParser = require('body-parser');
-const fileParser = bodyParser.urlencoded({extended: false});
-const rawBodyParser = bodyParser.raw({type: '*/*', limit: '200mb'});
+let fileParser = bodyParser.urlencoded({extended: false});
+let rawBodyParser = bodyParser.raw({type: '*/*', limit: '200mb'});
 
 const consts = require(__dirname + '/app/constants.js');
 const encoder = require(__dirname + '/app/encoder.js');
