@@ -16,6 +16,7 @@
     "ffmpeg": "0.0.4",
     "file-system": "^2.2.2",
     "fluent-ffmpeg": "^2.1.2",
+    "formidable": "^1.1.1",
     "fs": "0.0.1-security",
     "http-server": "^0.10.0",
     "mocha": "^3.3.0",
