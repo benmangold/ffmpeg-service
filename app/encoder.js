@@ -4,8 +4,8 @@ const consts = require(__dirname + '/constants.js');
 
 /**
  * encode an audio file to specified format
- * @param {file} audio file as bytes
- * @param {string} target format for encoding
+ * @param {file} file audio file as bytes
+ * @param {string} format format for encoding
  * @param {function} callback called upon completion
  */
 exports.encode = function(file, format, callback) {
