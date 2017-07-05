@@ -1,9 +1,9 @@
 
-const app = require('.././app');
-const chai = require('chai');
-const request = require('supertest');
+var app = require('.././app');
+var chai = require('chai');
+var request = require('supertest');
 
-const expect = chai.expect;
+var expect = chai.expect;
 
 describe('README API Tests', function() {
   it('should return 200 status', function(done) {
