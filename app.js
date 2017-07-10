@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const formidable = require('formidable');
 
 let bodyParser = require('body-parser');
 const fileParser = bodyParser.urlencoded({extended: false});
