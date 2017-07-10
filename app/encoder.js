@@ -28,13 +28,14 @@ exports.encode = function(file, format, callback) {
  	 * @param {string} callback - Function called upon completed conversion
 	 */
 	function ffmpegCall(format, callback) {
-		ffmpegConvertCommand = ffmpeg('input')
+		ffmpegConvertCommand = ffmpeg('input/input')
 			.audioCodec(format)
 			.on('error', function(err) {
+				console.log('FFMPEG ERROR ' + err);
 				callback(consts.FFMPEG_ERROR);
 			})
 			.on('end', function() {
-				fs.unlinkSync('input');
+				fs.unlinkSync('input/input');
 				callback('output' + extension);
 			})
 			.save('output' + extension);
@@ -44,7 +45,8 @@ exports.encode = function(file, format, callback) {
  	 * @param {function} callback - Function called upon completed writing
 	 */
 	function writeInputFile(file, callback) {
-			fs.writeFileSync('../input', file, function(err) {
+		console.log('PATH ' + __dirname);
+			fs.writeFileSync('input/input', file, function(err) {
 				callback('ERROR WRITING INPUT ' + err);
 			});
 			callback();
