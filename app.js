@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 
 let bodyParser = require('body-parser');
-const fileParser = bodyParser.urlencoded({extended: false});
 const rawBodyParser = bodyParser.raw({type: '*/*', limit: '200mb'});
 
 const consts = require(__dirname + '/app/constants.js');
