@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-
 const app = express();
 const encoderRoutes = require(__dirname + '/routes');
 app.use('/', encoderRoutes);
