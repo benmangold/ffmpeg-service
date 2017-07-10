@@ -29,22 +29,6 @@ app.post('/m4a', rawBodyParser, function(req, res) {
 	});
 });
 
-app.get('/upload', function(req, res) {
-	res.sendFile(__dirname + '/app/views/upload.html');
-});
-
-app.post('/upload', fileParser, function(req, res) {
-	const form = new formidable.IncomingForm();
-	form.parse(req);
-	form.on('fileBegin', function(name, file) {
-		file.path = __dirname + '/uploads/' + file.name;
-		});
-		form.on('file', function(name, file) {
-			console.log('Uploaded ' + file.name);
-		});
-		res.sendFile(__dirname + '/app/views/upload.html');
-});
-
 app.listen(3000, function() {
 	console.log('app listening on port 3000!');
 });
