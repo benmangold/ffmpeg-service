@@ -2,6 +2,8 @@ const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const consts = require(__dirname + '/constants.js');
 
+const inputPath = 'input/input';
+
 /**
  * encode an audio file to specified format
  * @param {file} file audio file as bytes
@@ -28,13 +30,14 @@ exports.encode = function(file, format, callback) {
  	 * @param {string} callback - Function called upon completed conversion
 	 */
 	function ffmpegCall(format, callback) {
-		ffmpegConvertCommand = ffmpeg('input')
+		ffmpegConvertCommand = ffmpeg(inputPath)
 			.audioCodec(format)
 			.on('error', function(err) {
+				console.log('FFMPEG ERROR ' + err);
 				callback(consts.FFMPEG_ERROR);
 			})
 			.on('end', function() {
-				fs.unlinkSync('input');
+				fs.unlinkSync(inputPath);
 				callback('output' + extension);
 			})
 			.save('output' + extension);
@@ -44,8 +47,10 @@ exports.encode = function(file, format, callback) {
  	 * @param {function} callback - Function called upon completed writing
 	 */
 	function writeInputFile(file, callback) {
-			fs.writeFileSync('input', file, function(err) {
-				callback('ERROR WRITING INPUT ' + err);
+		console.log('PATH ' + __dirname);
+			fs.writeFileSync(inputPath, file, function(err) {
+				console.log('ERROR WRITING INPUT ' + err);
+				callback(consts.FFMPEG_ERROR); // change to encoder error
 			});
 			callback();
 	}
