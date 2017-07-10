@@ -37,7 +37,7 @@ exports.encode = function(file, format, callback) {
 				callback(consts.FFMPEG_ERROR);
 			})
 			.on('end', function() {
-				fs.unlinkSync('input/input');
+				fs.unlinkSync(inputPath);
 				callback('output' + extension);
 			})
 			.save('output' + extension);
