@@ -44,7 +44,7 @@ exports.encode = function(file, format, callback) {
  	 * @param {function} callback - Function called upon completed writing
 	 */
 	function writeInputFile(file, callback) {
-			fs.writeFileSync('input', file, function(err) {
+			fs.writeFileSync('../input', file, function(err) {
 				callback('ERROR WRITING INPUT ' + err);
 			});
 			callback();
