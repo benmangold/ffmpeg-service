@@ -10,17 +10,18 @@ const encoder = require('../encoder.js');
 router.post('/mp3', rawBodyParser, function(req, res) {
 	encoder.encode(req.body, consts.MP3_CODEC, function(val) {
 		if (val != consts.FFMPEG_ERROR) {
-			res.download(__dirname + '/' + val);
+			res.download(val);
+			// fs.unlinkSync(__dirname + '/' + val);
 		} else {
 			res.statusCode = 500;
-			res.end();
+			res.send();
 		}
 	});
 });
 router.post('/m4a', rawBodyParser, function(req, res) {
 	encoder.encode(req.body, consts.M4A_CODEC, function(val) {
 		if (val != consts.FFMPEG_ERROR) {
-			res.download(__dirname + '/' + val);
+			res.download(val);
 		} else {
 			res.statusCode = 500;
 			res.send();

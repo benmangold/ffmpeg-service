@@ -10,6 +10,7 @@ describe('Encoder', function() {
 			encoder.encode(fs.readFileSync(__dirname + '/test.wav'),
 			consts.MP3_CODEC, function(val) {
 				assert.equal(val, 'output.mp3');
+				fs.unlinkSync(val);
 				done();
 			});
 		});
@@ -20,6 +21,7 @@ describe('Encoder', function() {
 			encoder.encode(fs.readFileSync(__dirname + '/test.wav'),
 			consts.M4A_CODEC, function(val) {
 				assert.equal(val, 'output.m4a');
+				fs.unlinkSync(val);
 				done();
 			});
 		});

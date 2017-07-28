@@ -4,7 +4,7 @@ const consts = require(__dirname + '/constants.js');
 
 let outputExtension;
 
-const inputPath = 'encoderInput/input';
+const inputPath = 'uploads/upload';
 let outputPath;
 
 /**
