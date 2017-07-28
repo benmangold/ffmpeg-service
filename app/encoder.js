@@ -20,7 +20,6 @@ exports.encode = function(file, format, callback) {
 	} if (format == consts.M4A_CODEC) {
 		outputExtension = '.m4a';
 	}
-
 	outputPath = outputPath + outputExtension;
 
 	writeInputFile(file, function() {
