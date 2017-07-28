@@ -30,6 +30,19 @@ exports.encode = function(file, format, callback) {
 		});
 	});
 };
+/** Writes unencoded file to disk
+ * @param {string} file - Unencoded audio file
+ * @param {function} callback - Function called upon completed writing
+ */
+function writeInputFile(file, callback) {
+	console.log('PATH ' + __dirname);
+	try {
+		fs.writeFileSync(inputPath, file, '');
+		callback();
+	} catch (e) {
+		callback(e);
+	}
+}
 /** Constructs and executes ffmpeg conversion cmd. Returns encoded filename
  * @param {string} format - Target audio format
  * @param {string} callback - Function called upon completed conversion
@@ -47,18 +60,5 @@ function ffmpegCall(format, callback) {
 			callback(outputPath);
 		})
 		.save(outputPath);
-}
-/** Writes unencoded file to disk
- * @param {string} file - Unencoded audio file
- * @param {function} callback - Function called upon completed writing
- */
-function writeInputFile(file, callback) {
-	console.log('PATH ' + __dirname);
-	try {
-		fs.writeFileSync(inputPath, file, '');
-		callback();
-	} catch (e) {
-		callback(e);
-	}
 }
 
