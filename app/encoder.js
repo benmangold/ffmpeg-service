@@ -2,10 +2,10 @@ const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const consts = require(__dirname + '/constants.js');
 
-const inputPath = 'encoderInput/input';
+let outputExtension;
 
+const inputPath = 'encoderInput/input';
 let outputPath;
-let extension;
 
 /**
  * encode an audio file to specified format. callback upon finished encoding
@@ -14,15 +14,15 @@ let extension;
  * @param {function} callback called upon completion
  */
 exports.encode = function(file, format, callback) {
-	extension = '';
+	outputExtension = '';
 	outputPath = 'output';
 	if (format == consts.MP3_CODEC) {
-		extension = '.mp3';
+		outputExtension = '.mp3';
 	} if (format == consts.M4A_CODEC) {
-		extension = '.m4a';
+		outputExtension = '.m4a';
 	}
 
-	outputPath = outputPath + extension;
+	outputPath = outputPath + outputExtension;
 
 	writeInputFile(file, function() {
 		ffmpegCall(format, function(val) {
