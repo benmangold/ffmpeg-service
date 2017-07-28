@@ -1,0 +1,19 @@
+*.avi
+*.mp3
+*.m4a
+*.zip
+
+.dockerignore
+.ebextensions
+
+public
+package-lock.json
+input
+
+node-ffmpeg.zip
+
+/node_modules
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
