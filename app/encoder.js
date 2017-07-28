@@ -3,7 +3,6 @@ const fs = require('fs');
 const consts = require(__dirname + '/constants.js');
 
 let outputExtension;
-
 const inputPath = 'uploads/upload';
 let outputPath;
 
@@ -35,7 +34,7 @@ exports.encode = function(file, format, callback) {
  * @param {function} callback - Function called upon completed writing
  */
 function writeInputFile(file, callback) {
-	console.log('PATH ' + __dirname);
+	// console.log('PATH ' + __dirname);
 	try {
 		fs.writeFileSync(inputPath, file, '');
 		callback();
@@ -51,9 +50,9 @@ function ffmpegCall(format, callback) {
 	ffmpegConvertCommand = ffmpeg(inputPath)
 		.audioCodec(format)
 		.on('error', function(err) {
-			console.log('FFMPEG ERROR ' + err);
+			// console.log('FFMPEG ERROR ' + err);
 			fs.unlinkSync(inputPath);
-			callback(consts.FFMPEG_ERROR);
+			callback(consts.FFMPEG_ERROR + err);
 		})
 		.on('end', function() {
 			fs.unlinkSync(inputPath);
