@@ -31,7 +31,7 @@ describe('Encoder', function() {
 		it('should return consts.FFMPEG_ERROR', function(done) {
 			encoder.encode(fs.readFileSync(__dirname + '/corrupted.wav'),
 			consts.M4A_CODEC, function(val) {
-				assert.equal(val, consts.FFMPEG_ERROR);
+				assert.equal(val.indexOf(consts.FFMPEG_ERROR), 0);
 				value = val;
 				done();
 			});
