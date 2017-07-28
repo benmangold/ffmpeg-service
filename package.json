@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "chai": "^3.5.0",
+    "debug": "^2.6.8",
     "express": "^4.15.2",
     "express-readme": "0.0.5",
     "ffmpeg": "0.0.4",
@@ -20,7 +21,8 @@
     "fs": "0.0.1-security",
     "http-server": "^0.10.0",
     "mocha": "^3.3.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
