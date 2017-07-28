@@ -11,10 +11,6 @@ const inputPath = 'input/input';
  * @param {function} callback called upon completion
  */
 exports.encode = function(file, format, callback) {
-
-		console.log('Encoder ack ' + file.length);
-
-
 	let extension = '';
 	if (format == consts.MP3_CODEC) {
 		extension = '.mp3';
