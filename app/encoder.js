@@ -11,6 +11,10 @@ const inputPath = 'input/input';
  * @param {function} callback called upon completion
  */
 exports.encode = function(file, format, callback) {
+
+		console.log('Encoder ack ' + file.length);
+
+
 	let extension = '';
 	if (format == consts.MP3_CODEC) {
 		extension = '.mp3';
@@ -48,10 +52,11 @@ exports.encode = function(file, format, callback) {
 	 */
 	function writeInputFile(file, callback) {
 		console.log('PATH ' + __dirname);
-			fs.writeFileSync(inputPath, file, function(err) {
-				console.log('ERROR WRITING INPUT ' + err);
-				callback(consts.FFMPEG_ERROR); // change to encoder error
-			});
+		try {
+			fs.writeFileSync(inputPath, file, '');
 			callback();
+		} catch (e) {
+			callback(e);
+		}
 	}
 };
