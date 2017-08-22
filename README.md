@@ -57,8 +57,8 @@ Requires Docker
 Install Docker
 > https://www.docker.com
 
-Build Docker Image from Dockerfile
-> $ docker build -t .
+Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
+> $ docker build -t image/tag .
 
 Launch Docker Container from Docker Image, exposing port 49160
 > docker run -p 49160:3000 -d 'Image'/'Tag'	
