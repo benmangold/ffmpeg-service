@@ -1,8 +1,17 @@
 # ffmpeg web service
 
-An web service for converting audio files using Nodejs, Express and FFMPEG
+A utility web service for converting audio files 
 
-## Endpoints
+Nodejs, Express and FFMPEG, Docker
+
+Currently not suited for scale, file writes are handled syncronously and in server memory.  This service is intended for personal servers or local use
+... for now
+
+## Continued Development
+
+[Task Board](https://trello.com/b/I5Eh8JnX/ff-ffmpeg-service)
+
+## API
 
 > POST /mp3 - Convert audio file in request body to mp3 and return result for download
 
