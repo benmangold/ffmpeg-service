@@ -1,0 +1,1 @@
+/* Uploaded files are stored in this folder, and then deleted upon encoding */
