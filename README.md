@@ -4,7 +4,7 @@ A utility web service for converting audio files
 
 Nodejs, Express and FFMPEG, Docker
 
-Currently not suited for scale, file writes are handled syncronously and in server memory.  This service is intended for personal servers or local use
+Currently not suited for scale, async file writes are mildly buggy and in server memory.  This service is intended for personal servers or local use
 ... for now
 
 ## Currently Deployed on Digital Ocean
