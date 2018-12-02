@@ -17,13 +17,13 @@ Currently not suited for scale, async file writes are mildly buggy and in server
 
 ## API
 
-> POST /mp3 - Convert audio file in request body to mp3 and return result for download
+`POST /mp3` - Convert audio file in request body to mp3 and return result for download
 
-> POST /m4a - Convert audio file in request body to mp3 and return result for download
+`POST /m4a` - Convert audio file in request body to mp3 and return result for download
 
-> GET /, /readme - Web Service Readme
+`GET /`, `GET /readme` - Web Service Readme
 
-### /mp3, /m4a
+### POST /mp3, POST /m4a
 
 POST to /mp3 or /m4a using Postman or a Curl command:
 
