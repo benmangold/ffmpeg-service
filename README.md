@@ -2,14 +2,15 @@
 
 A utility web service for converting audio files 
 
-Nodejs, Express and FFMPEG, Docker
+Node.js, Express, FFMPEG, Docker
 
 Currently not suited for scale, async file writes are mildly buggy and in server memory.  This service is intended for personal servers or local use
 ... for now
 
-## Currently Deployed on Digital Ocean
+## Deployed master branch on Digital Ocean
 
 `http://159.89.31.235:49160/`
+
 
 ## Continued Development
 
@@ -47,27 +48,27 @@ Requires local Node and FFMPEG installation.
    Using homebrew:
    > \$ brew install node
 
-## Dev - Running Local Node.js Web Service
+
+## Running Service Locally
 
 Navigate to project directory and:
 
 Install dependencies:
 
-> \$ npm install
+> $ npm install
 
 Start app:
 
-> \$ node app.js
-
-Check for errors with ESLint:
-
-> \$ ./node_modules/.bin/eslint .
+> $ node app.js
 
 Run unit tests with Mocha:
 
-> \$ ./node_modules/.bin/mocha
+> $ npm run test
+  or
+> $ ./node_modules/.bin/mocha
 
-## Running Local Docker Container
+
+## Running Service in a Docker Container Locally
 
 Requires Docker
 
@@ -77,8 +78,31 @@ Install Docker
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
-> \$ docker build -t image/tag .
+> $ docker build -t <image>/<tag> .
 
 Launch Docker Container from Docker Image, exposing port 49160
 
-> docker run -p 49160:3000 -d 'image'/'tag'
+> $ docker run -p 49160:3000 -d '<image>'/'<tag>'
+
+## Deploying Service on Digital Ocean Droplet with Docker
+
+I am using a 4GB RAM, 2 vCPU Droplet for test deployments
+I use the Digital Ocean Docker App Preset Droplet
+
+Create your Droplet
+
+SSH into your Droplet
+
+> $ ssh root@<droplet-ip>
+
+Clone this repo
+ 
+> # git clone https://github.com/benmangold/ffmpeg-service.git
+
+Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
+
+> # docker build -t <image>/<tag> .
+
+Launch Docker Container from Docker Image, exposing port 49160
+
+> # docker run -p 49160:3000 -d '<image>'/'<tag>'
