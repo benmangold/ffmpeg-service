@@ -1,10 +1,10 @@
+const config = require(__dirname + '/config.js');
+
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
-const config = require(__dirname + '/constants.js');
 
-let outputExtension;
+/* TODO add a random uuid to this file to prevent conflicts */
 const inputPath = 'uploads/upload';
-let outputPath;
 
 /**
  * encode an audio file to specified format. callback upon finished encoding
@@ -13,8 +13,7 @@ let outputPath;
  * @param {function} callback called upon completion
  */
 exports.encode = function(file, format, callback) {
-
-  let outputPath = gatherOutputPath(format)
+  let outputPath = gatherOutputPath(format);
 
   writeInputFile(file, function() {
     ffmpegCall(format, outputPath, function(val) {
@@ -23,10 +22,9 @@ exports.encode = function(file, format, callback) {
   });
 };
 
-
-
+/* Construct output path from desired output format */
 function gatherOutputPath(format) {
-  outputExtension = '';
+  let outputExtension = '';
   outputPath = 'output';
   if (format == config.MP3_CODEC) {
     outputExtension = '.mp3';
@@ -37,21 +35,13 @@ function gatherOutputPath(format) {
   return outputPath + outputExtension;
 }
 
-
 /** Writes unencoded file to disk
  * @param {string} file - Unencoded audio file
  * @param {function} callback - Function called upon completed writing
  */
 function writeInputFile(file, callback) {
-  // console.log('PATH ' + __dirname);
-  // try {
-  //   fs.writeFileSync(inputPath, file, '');
-  //   callback();
-  // } catch (e) {
-  //   callback(e);
-  // }
   try {
-    fs.writeFile(inputPath, file, '', (res) => {
+    fs.writeFile(inputPath, file, '', res => {
       callback(res);
     });
   } catch (e) {

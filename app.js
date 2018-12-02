@@ -2,15 +2,14 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-/* Winston Logger */
+/* Winston Logger Configuration */
 const winston = require('winston');
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, { timestamp: true });
 
+/* Audio Conversion Routes - MP3, M4A */
 const encoderRoutes = require(__dirname + '/app/routes/routes');
 app.use('/', encoderRoutes);
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 /* Expose README.md to appropriate GET routes */
 require('express-readme')(app, {
