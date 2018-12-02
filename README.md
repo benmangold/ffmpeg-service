@@ -98,6 +98,7 @@ SSH into your Droplet
 Clone this repo
  
 > `#` git clone https://github.com/benmangold/ffmpeg-service.git
+> `#` cd ffmpeg-service
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
