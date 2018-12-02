@@ -1,9 +1,9 @@
-const ffmpeg = require("fluent-ffmpeg");
-const fs = require("fs");
-const consts = require(__dirname + "/constants.js");
+const ffmpeg = require('fluent-ffmpeg');
+const fs = require('fs');
+const config = require(__dirname + '/constants.js');
 
 let outputExtension;
-const inputPath = "uploads/upload";
+const inputPath = 'uploads/upload';
 let outputPath;
 
 /**
@@ -13,13 +13,13 @@ let outputPath;
  * @param {function} callback called upon completion
  */
 exports.encode = function(file, format, callback) {
-  outputExtension = "";
-  outputPath = "output";
-  if (format == consts.MP3_CODEC) {
-    outputExtension = ".mp3";
+  outputExtension = '';
+  outputPath = 'output';
+  if (format == config.MP3_CODEC) {
+    outputExtension = '.mp3';
   }
-  if (format == consts.M4A_CODEC) {
-    outputExtension = ".m4a";
+  if (format == config.M4A_CODEC) {
+    outputExtension = '.m4a';
   }
   outputPath = outputPath + outputExtension;
 
@@ -36,7 +36,7 @@ exports.encode = function(file, format, callback) {
 function writeInputFile(file, callback) {
   // console.log('PATH ' + __dirname);
   try {
-    fs.writeFileSync(inputPath, file, "");
+    fs.writeFileSync(inputPath, file, '');
     callback();
   } catch (e) {
     callback(e);
@@ -49,12 +49,12 @@ function writeInputFile(file, callback) {
 function ffmpegCall(format, callback) {
   ffmpegConvertCommand = ffmpeg(inputPath)
     .audioCodec(format)
-    .on("error", function(err) {
+    .on('error', function(err) {
       // console.log('FFMPEG ERROR ' + err);
       fs.unlinkSync(inputPath);
-      callback(consts.FFMPEG_ERROR + err);
+      callback(config.FFMPEG_ERROR + err);
     })
-    .on("end", function() {
+    .on('end', function() {
       fs.unlinkSync(inputPath);
       callback(outputPath);
     })
