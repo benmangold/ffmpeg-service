@@ -18,4 +18,6 @@ node-ffmpeg.zip
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+!uploads
+
 eslist
