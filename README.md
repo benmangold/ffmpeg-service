@@ -7,6 +7,10 @@ Nodejs, Express and FFMPEG, Docker
 Currently not suited for scale, file writes are handled syncronously and in server memory.  This service is intended for personal servers or local use
 ... for now
 
+## Currently Deployed on Digital Ocean
+
+`http://159.89.31.235:49160/`
+
 ## Continued Development
 
 [Task Board](https://trello.com/b/I5Eh8JnX/ff-ffmpeg-service)
@@ -77,4 +81,4 @@ Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
 Launch Docker Container from Docker Image, exposing port 49160
 
-> docker run -p 49160:3000 -d 'Image'/'Tag'
+> docker run -p 49160:3000 -d 'image'/'tag'
