@@ -11,9 +11,10 @@ const inputPath = 'uploads/upload';
  * @param {file} file audio file as bytes
  * @param {string} format format for encoding
  * @param {function} callback called upon completion
+ * @param {string} id appended to filename for testing
  */
-exports.encode = function(file, format, callback) {
-  let outputPath = gatherOutputPath(format);
+exports.encode = function(file, format, callback, fileId) {
+  let outputPath = gatherOutputPath(format, fileId);
 
   writeInputFile(file, function() {
     ffmpegCall(format, outputPath, function(val) {
@@ -23,7 +24,8 @@ exports.encode = function(file, format, callback) {
 };
 
 /* Construct output path from desired output format */
-function gatherOutputPath(format) {
+function gatherOutputPath(format, id) {
+  if (!id) id = Date.now();
   let outputExtension = '';
   outputPath = 'output';
   if (format == config.MP3_CODEC) {
@@ -32,7 +34,7 @@ function gatherOutputPath(format) {
   if (format == config.M4A_CODEC) {
     outputExtension = '.m4a';
   }
-  return outputPath + outputExtension;
+  return outputPath + id + outputExtension;
 }
 
 /** Writes unencoded file to disk

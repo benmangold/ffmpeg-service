@@ -11,10 +11,11 @@ describe('Encoder', function() {
         fs.readFileSync(__dirname + '/test.wav'),
         consts.MP3_CODEC,
         function(val) {
-          assert.equal(val, 'output.mp3');
+          assert.equal(val, 'output123.mp3');
           fs.unlinkSync(val);
           done();
-        }
+        },
+        '123'
       );
     });
   });
@@ -25,10 +26,11 @@ describe('Encoder', function() {
         fs.readFileSync(__dirname + '/test.wav'),
         consts.M4A_CODEC,
         function(val) {
-          assert.equal(val, 'output.m4a');
+          assert.equal(val, 'output123.m4a');
           fs.unlinkSync(val);
           done();
-        }
+        },
+        '123'
       );
     });
   });
