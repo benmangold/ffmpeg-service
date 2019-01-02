@@ -32,6 +32,7 @@ Include audio file as binary in request body
 Postman Ex:
 
 https://www.dropbox.com/s/5exywmaj5o7cdn3/postMp3%20Postman%20Usage.png?dl=0
+![img test](https://previews.dropbox.com/p/thumb/AAQ3nknHovQGqEIM9OoqAZOvmT5jvrjPJb-taVD5nawWPf0FWGo8D-Fdx59KDDF5vN3Bx4v9oE3WxeWT1ZBhFsrW8skVLIWi5iGt17gIuxfgLaqYRzpAkUtpV32gi3Ep2KeH62pVBtmCTYwyaswn97yZMkgXrgNrY_5vXOOd5AtQZATm8J_PPAj941F9TvfoK-Gt7etmd9FaNuFoawm8e3Than99DdVbUCrcl_ta0NDb0yzIoLX_mLDLYG07QDGgbfHxQyGDrbC2Db_UA-7kZkClQICZNcgisrIVeLZ0yNjKrVfEajuMTILKDd1KJCX1rAkDdeycqYjYTn9UTwWLNJ6C/p.png?size=2048x1536&size_mode=3)
 
 Curl Ex:
 
