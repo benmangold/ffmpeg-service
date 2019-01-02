@@ -104,6 +104,11 @@ $ docker run -p 49160:3000 -d '<image>'/'<tag>'
 
 ## Deploying Service on Digital Ocean Droplet with Docker
 
+```
+$ - local machine
+# - ssh-ed machine
+```
+
 I am using a 4GB RAM, 2 vCPU Droplet for test deployments
 I use the Digital Ocean Docker App Preset Droplet
 
