@@ -1,16 +1,15 @@
 # ffmpeg web service
 
-A utility web service for converting audio files 
+A utility web service for converting audio files
 
 Node.js, Express, FFMPEG, Docker
 
-Currently not suited for scale, async file writes are mildly buggy and in server memory.  This service is intended for personal servers or local use
+Currently not suited for scale, async file writes are mildly buggy and in server memory. This service is intended for personal servers or local use
 ... for now
 
 ## Deployed master branch on Digital Ocean
 
 `http://159.89.31.235:49160/`
-
 
 ## Continued Development
 
@@ -48,8 +47,9 @@ Requires local Node and FFMPEG installation.
 
 2. Install node https://nodejs.org/en/download/
    Using homebrew:
+
 ```bash
-  $ brew install node
+$ brew install node
 ```
 
 ## Running Service Locally
@@ -74,7 +74,8 @@ Run unit tests with Mocha:
 $ npm run test
 ```
 
-  or
+or
+
 ```bash
 $ ./node_modules/.bin/mocha
 ```
@@ -115,23 +116,23 @@ $ ssh root@<droplet-ip>
 ```
 
 Clone this repo
- 
+
 ```bash
-`#` git clone https://github.com/benmangold/ffmpeg-service.git
+# git clone https://github.com/benmangold/ffmpeg-service.git
 ```
 
 ```bash
-`#` cd ffmpeg-service
+# cd ffmpeg-service
 ```
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
 ```bash
-`#` docker build -t <image>/<tag> .
+# docker build -t <image>/<tag> .
 ```
 
 Launch Docker Container from Docker Image, exposing port 49160
 
 ```bash
-`#` docker run -p 49160:3000 -d '<image>'/'<tag>'
+# docker run -p 49160:3000 -d '<image>'/'<tag>'
 ```
