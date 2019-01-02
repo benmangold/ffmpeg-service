@@ -6,6 +6,9 @@ const fs = require('fs');
 /* TODO add a random uuid to this file to prevent conflicts */
 const inputPath = 'uploads/upload';
 
+/* Winston Logger - Configured in app.js */
+const winston = require('winston');
+
 /**
  * encode an audio file to specified format. callback upon finished encoding
  * @param {file} file audio file as bytes
@@ -59,7 +62,7 @@ function ffmpegCall(format, outputPath, callback) {
   ffmpegConvertCommand = ffmpeg(inputPath)
     .audioCodec(format)
     .on('error', function(err) {
-      // console.log('FFMPEG ERROR ' + err);
+      console.log('FFMPEG ERROR ' + err);
       fs.unlink(inputPath, (err, res) => {
         callback(config.FFMPEG_ERROR + err);
       });
