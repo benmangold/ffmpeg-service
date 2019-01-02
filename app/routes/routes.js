@@ -1,7 +1,13 @@
-const {MP3_CODEC, M4A_CODEC, FFMPEG_ERROR, FILE_LIMIT } = require('../config.js');
+const {
+  MP3_CODEC,
+  M4A_CODEC,
+  FFMPEG_ERROR,
+  FILE_LIMIT,
+} = require('../config.js');
 
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 
 /* ffmpeg encoder module */
 const encoder = require('../encoder.js');
@@ -31,15 +37,27 @@ router.post('/m4a', rawBodyParser, function(req, res) {
  * @param {res} res - express response for download or error
  */
 function encodeAndDownload(codec, file, res) {
-  winston.info('Launching Encoding Job ' + codec);
-  encoder.encode(file, codec, (output) => {
+  winston.info(`Launching ${codec} Encoding Job`);
+  encoder.encode(file, codec, output => {
     if (output.indexOf(FFMPEG_ERROR) !== -1) {
       winston.log('error', output);
       res.statusCode = 500;
       res.send(output);
     } else {
-      winston.info('Downloading Encoded File ' + codec);
-      res.download(output);
+      winston.info(`Downloading Encoded ${codec} File`);
+      res.download(output, output, (err, res) => {
+        if (err) {
+          winston.error(err);
+          res.status(500).send();
+        }
+        fs.unlink(output, (err, res) => {
+          if (err) {
+            winston.error(err);
+            res.status(500).send();
+          }
+          winston.info('Deleting encoded file');
+        });
+      });
     }
   });
 }
