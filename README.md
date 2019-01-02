@@ -1,16 +1,15 @@
 # ffmpeg web service
 
-A utility web service for converting audio files 
+A utility web service for converting audio files
 
 Node.js, Express, FFMPEG, Docker
 
-Currently not suited for scale, async file writes are mildly buggy and in server memory.  This service is intended for personal servers or local use
+Currently not suited for scale, async file writes are mildly buggy and in server memory. This service is intended for personal servers or local use
 ... for now
 
 ## Deployed master branch on Digital Ocean
 
 `http://159.89.31.235:49160/`
-
 
 ## Continued Development
 
@@ -36,7 +35,9 @@ https://www.dropbox.com/s/5exywmaj5o7cdn3/postMp3%20Postman%20Usage.png?dl=0
 
 Curl Ex:
 
-> curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/ -o file.mp3
+```bash
+curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/ -o file.mp3
+```
 
 ## Installation
 
@@ -46,8 +47,10 @@ Requires local Node and FFMPEG installation.
 
 2. Install node https://nodejs.org/en/download/
    Using homebrew:
-   > \$ brew install node
 
+```bash
+$ brew install node
+```
 
 ## Running Service Locally
 
@@ -55,18 +58,27 @@ Navigate to project directory and:
 
 Install dependencies:
 
-> $ npm install
+```bash
+$ npm install
+```
 
 Start app:
 
-> $ node app.js
+```bash
+$ node app.js
+```
 
 Run unit tests with Mocha:
 
-> $ npm run test
-  or
-> $ ./node_modules/.bin/mocha
+```bash
+$ npm run test
+```
 
+or
+
+```bash
+$ ./node_modules/.bin/mocha
+```
 
 ## Running Service in a Docker Container Locally
 
@@ -74,17 +86,28 @@ Requires Docker
 
 Install Docker
 
-> https://www.docker.com
+```
+https://www.docker.com
+```
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
-> $ docker build -t <image>/<tag> .
+```bash
+$ docker build -t <image>/<tag> .
+```
 
 Launch Docker Container from Docker Image, exposing port 49160
 
-> $ docker run -p 49160:3000 -d '<image>'/'<tag>'
+```bash
+$ docker run -p 49160:3000 -d '<image>'/'<tag>'
+```
 
 ## Deploying Service on Digital Ocean Droplet with Docker
+
+```
+$ - local machine
+# - ssh-ed machine
+```
 
 I am using a 4GB RAM, 2 vCPU Droplet for test deployments
 I use the Digital Ocean Docker App Preset Droplet
@@ -93,18 +116,28 @@ Create your Droplet
 
 SSH into your Droplet
 
-> $ ssh root@<droplet-ip>
+```bash
+$ ssh root@<droplet-ip>
+```
 
 Clone this repo
- 
-> `#` git clone https://github.com/benmangold/ffmpeg-service.git
 
-> `#` cd ffmpeg-service
+```bash
+# git clone https://github.com/benmangold/ffmpeg-service.git
+```
+
+```bash
+# cd ffmpeg-service
+```
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
-> `#` docker build -t <image>/<tag> .
+```bash
+# docker build -t <image>/<tag> .
+```
 
 Launch Docker Container from Docker Image, exposing port 49160
 
-> `#` docker run -p 49160:3000 -d '<image>'/'<tag>'
+```bash
+# docker run -p 49160:3000 -d '<image>'/'<tag>'
+```
