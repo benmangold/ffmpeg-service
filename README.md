@@ -36,7 +36,9 @@ https://www.dropbox.com/s/5exywmaj5o7cdn3/postMp3%20Postman%20Usage.png?dl=0
 
 Curl Ex:
 
-> curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/ -o file.mp3
+```bash
+curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/ -o file.mp3
+```
 
 ## Installation
 
@@ -46,8 +48,9 @@ Requires local Node and FFMPEG installation.
 
 2. Install node https://nodejs.org/en/download/
    Using homebrew:
-   > \$ brew install node
-
+```bash
+  $ brew install node
+```
 
 ## Running Service Locally
 
@@ -55,18 +58,26 @@ Navigate to project directory and:
 
 Install dependencies:
 
-> $ npm install
+```bash
+$ npm install
+```
 
 Start app:
 
-> $ node app.js
+```bash
+$ node app.js
+```
 
 Run unit tests with Mocha:
 
-> $ npm run test
-  or
-> $ ./node_modules/.bin/mocha
+```bash
+$ npm run test
+```
 
+  or
+```bash
+$ ./node_modules/.bin/mocha
+```
 
 ## Running Service in a Docker Container Locally
 
@@ -74,15 +85,21 @@ Requires Docker
 
 Install Docker
 
-> https://www.docker.com
+```
+https://www.docker.com
+```
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
-> $ docker build -t <image>/<tag> .
+```bash
+$ docker build -t <image>/<tag> .
+```
 
 Launch Docker Container from Docker Image, exposing port 49160
 
-> $ docker run -p 49160:3000 -d '<image>'/'<tag>'
+```bash
+$ docker run -p 49160:3000 -d '<image>'/'<tag>'
+```
 
 ## Deploying Service on Digital Ocean Droplet with Docker
 
@@ -93,18 +110,28 @@ Create your Droplet
 
 SSH into your Droplet
 
-> $ ssh root@<droplet-ip>
+```bash
+$ ssh root@<droplet-ip>
+```
 
 Clone this repo
  
-> `#` git clone https://github.com/benmangold/ffmpeg-service.git
+```bash
+`#` git clone https://github.com/benmangold/ffmpeg-service.git
+```
 
-> `#` cd ffmpeg-service
+```bash
+`#` cd ffmpeg-service
+```
 
 Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 
-> `#` docker build -t <image>/<tag> .
+```bash
+`#` docker build -t <image>/<tag> .
+```
 
 Launch Docker Container from Docker Image, exposing port 49160
 
-> `#` docker run -p 49160:3000 -d '<image>'/'<tag>'
+```bash
+`#` docker run -p 49160:3000 -d '<image>'/'<tag>'
+```
