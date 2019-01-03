@@ -9,13 +9,13 @@ describe('Encoder', function() {
     it('should return the encoded filename', function(done) {
       encoder.encode(
         fs.readFileSync(__dirname + '/test.wav'),
-        consts.MP3_CODEC,'123',
+        consts.MP3_CODEC,
+        '123',
         function(filename) {
           assert.equal(filename, 'output123.mp3');
           fs.unlinkSync(filename);
           done();
-        },
-        '123' // replaces current time in ms as file id
+        }
       );
     });
   });
@@ -24,13 +24,13 @@ describe('Encoder', function() {
     it('should return the encoded filename', function(done) {
       encoder.encode(
         fs.readFileSync(__dirname + '/test.wav'),
-        consts.M4A_CODEC,'123',
+        consts.M4A_CODEC,
+        '123',
         function(filename) {
           assert.equal(filename, 'output123.m4a');
           fs.unlinkSync(filename);
           done();
-        },
-         // replaces current time in ms as file id
+        }
       );
     });
   });
@@ -39,7 +39,8 @@ describe('Encoder', function() {
     it('should return consts.FFMPEG_ERROR', function(done) {
       encoder.encode(
         fs.readFileSync(__dirname + '/corrupted.wav'),
-        consts.M4A_CODEC,'123',
+        consts.M4A_CODEC,
+        '123',
         function(val) {
           assert.equal(val.indexOf(consts.FFMPEG_ERROR), 0);
           value = val;

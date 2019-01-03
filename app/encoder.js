@@ -19,15 +19,14 @@ exports.encode = function(file, format, fileId, callback) {
   let outputPath = gatherOutputPath(format, fileId);
   winston.info(`Encoding file ${outputPath}`);
   writeInputFile(file, fileId, function() {
-    ffmpegCall(format, outputPath, fileId, (val) => {
-      callback(val);
+    ffmpegCall(format, outputPath, fileId, (outputPath) => {
+      callback(outputPath);
     });
   });
 };
 
 /* Construct output path with unique id and specified format */
 function gatherOutputPath(format, id) {
-  if (!id) id = UUID
   let outputExtension = '';
   outputPath = 'output';
   if (format == MP3_CODEC) {
