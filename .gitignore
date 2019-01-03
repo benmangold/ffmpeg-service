@@ -21,8 +21,8 @@ node-ffmpeg.zip
 
 eslist
 
-# files used by test/load.bash
+# files used by test/curl_test.bash
 /audio/input/*.wav
 
-# target directory for test/load.bash
+# target directory for test/curl_test.bash
 /audio/output/*
