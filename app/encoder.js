@@ -63,7 +63,7 @@ function ffmpegCall(format, outputPath, callback) {
   ffmpegConvertCommand = ffmpeg(inputPath)
     .audioCodec(format)
     .on('error', function(err) {
-      console.log('FFMPEG ERROR ' + err);
+      winston.error(`FFMPEG ERROR ${err}`);
       fs.unlink(inputPath, (err, res) => {
         callback(config.FFMPEG_ERROR + err);
       });
