@@ -36,8 +36,6 @@ exports.encode = function(file, format, fileId, callback) {
       } else {
         callback(null, outputPath);
       }
-
-      // }
     });
   });
 };
@@ -80,7 +78,7 @@ function ffmpegCall(format, outputPath, fileId, callback) {
     .on('error', err => {
       winston.error(`FFMPEG ERROR ${err}`);
       fs.unlink(inputPath + fileId, (err, res) => {
-        callback(FFMPEG_ERROR + err, null);
+        callback(`${FFMPEG_ERROR} ${err}`, null);
       });
     })
     .on('end', () => {
