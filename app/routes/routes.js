@@ -38,13 +38,14 @@ router.post('/m4a', rawBodyParser, function(req, res) {
  */
 function encodeAndDownload(codec, file, res) {
   winston.info(`Launching ${codec} Encoding Job`);
-  encoder.encode(file, codec, output => {
+  encoder.encode(file, codec, parseInt(Math.random() * 1000000000), output => {
+    console.log('encoder output ' + output)
     if (output.indexOf(FFMPEG_ERROR) !== -1) {
       winston.error('error', output);
       res.statusCode = 500;
       res.send(output);
     } else {
-      winston.info(`Downloading Encoded ${codec} File`);
+      winston.info(`Downloading Encoded ${codec} File ${output}`);
       res.download(output, output, (err, res) => {
         if (err) {
           winston.error(err);
@@ -55,7 +56,7 @@ function encodeAndDownload(codec, file, res) {
             winston.error(err);
             res.status(500).send();
           }
-          winston.info('Deleting encoded file');
+          winston.info(`Deleting encoded file ${output}`);
         });
       });
     }

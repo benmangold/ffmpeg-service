@@ -1,10 +1,9 @@
-const config = require(__dirname + '/config.js');
+const {MP3_CODEC, M4A_CODEC, FFMPEG_ERROR} = require(__dirname + '/config.js');
 
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 
-/* TODO add a random uuid to this file to prevent conflicts */
-const inputPath = 'uploads/upload';
+const inputPath = `uploads/upload`;
 
 /* Winston Logger - Configured in app.js */
 const winston = require('winston');
@@ -14,13 +13,13 @@ const winston = require('winston');
  * @param {file} file audio file as bytes
  * @param {string} format format for encoding
  * @param {function} callback called upon completion
- * @param {string} id appended to filename for testing
+ * @param {string} fileId appended to filename for testing
  */
-exports.encode = function(file, format, callback, fileId) {
+exports.encode = function(file, format, fileId, callback) {
   let outputPath = gatherOutputPath(format, fileId);
   winston.info(`Encoding file ${outputPath}`);
-  writeInputFile(file, function() {
-    ffmpegCall(format, outputPath, function(val) {
+  writeInputFile(file, fileId, function() {
+    ffmpegCall(format, outputPath, fileId, (val) => {
       callback(val);
     });
   });
@@ -28,13 +27,13 @@ exports.encode = function(file, format, callback, fileId) {
 
 /* Construct output path with unique id and specified format */
 function gatherOutputPath(format, id) {
-  if (!id) id = Date.now();
+  if (!id) id = UUID
   let outputExtension = '';
   outputPath = 'output';
-  if (format == config.MP3_CODEC) {
+  if (format == MP3_CODEC) {
     outputExtension = '.mp3';
   }
-  if (format == config.M4A_CODEC) {
+  if (format == M4A_CODEC) {
     outputExtension = '.m4a';
   }
   return outputPath + id + outputExtension;
@@ -44,9 +43,9 @@ function gatherOutputPath(format, id) {
  * @param {string} file - Unencoded file
  * @param {function} callback - Function called upon completed writing
  */
-function writeInputFile(file, callback) {
+function writeInputFile(file, fileId, callback) {
   try {
-    fs.writeFile(inputPath, file, '', res => {
+    fs.writeFile(inputPath + fileId, file, '', res => {
       callback(res);
     });
   } catch (e) {
@@ -59,17 +58,17 @@ function writeInputFile(file, callback) {
  * @param {string} outputPath - Path for output file on local disk
  * @param {string} callback - Function called upon completed conversion
  */
-function ffmpegCall(format, outputPath, callback) {
-  ffmpegConvertCommand = ffmpeg(inputPath)
+function ffmpegCall(format, outputPath, fileId, callback) {
+  ffmpegConvertCommand = ffmpeg(inputPath + fileId)
     .audioCodec(format)
     .on('error', function(err) {
       winston.error(`FFMPEG ERROR ${err}`);
-      fs.unlink(inputPath, (err, res) => {
-        callback(config.FFMPEG_ERROR + err);
+      fs.unlink(inputPath + fileId, (err, res) => {
+        callback(FFMPEG_ERROR + err);
       });
     })
     .on('end', function() {
-      fs.unlink(inputPath, (err, res) => {
+      fs.unlink(inputPath + fileId, (err, res) => {
         callback(outputPath);
       });
     })

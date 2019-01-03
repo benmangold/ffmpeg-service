@@ -3,25 +3,25 @@
 # a local load test 
 
 # this script depends on .wav files i have ignored in loadTestAudio/
-# include a.wav - i.wav in loadTestAudio/ and uncomment the lines below to run it yourself
+# include a.wav - i.wav in loadTestAudio/input/ and uncomment the lines below to run it yourself
 
-curl --request POST --data-binary "@test/test.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/file.mp3
-curl --request POST --data-binary "@test/test.wav" 127.0.0.1:3000/m4a -o loadTestAudio/file.m4a
-# curl --request POST --data-binary "@loadTestAudio/a.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/a.mp3
-# curl --request POST --data-binary "@loadTestAudio/a.wav" 127.0.0.1:3000/m4a -o loadTestAudio/a.m4a
-# curl --request POST --data-binary "@loadTestAudio/b.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/b.mp3
-# curl --request POST --data-binary "@loadTestAudio/b.wav" 127.0.0.1:3000/m4a -o loadTestAudio/b.m4a
-# curl --request POST --data-binary "@loadTestAudio/c.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/c.mp3
-# curl --request POST --data-binary "@loadTestAudio/c.wav" 127.0.0.1:3000/m4a -o loadTestAudio/c.m4a
-# curl --request POST --data-binary "@loadTestAudio/d.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/d.mp3
-# curl --request POST --data-binary "@loadTestAudio/d.wav" 127.0.0.1:3000/m4a -o loadTestAudio/d.m4a
-# curl --request POST --data-binary "@loadTestAudio/e.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/e.mp3
-# curl --request POST --data-binary "@loadTestAudio/e.wav" 127.0.0.1:3000/m4a -o loadTestAudio/e.m4a
-# curl --request POST --data-binary "@loadTestAudio/f.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/f.mp3
-# curl --request POST --data-binary "@loadTestAudio/f.wav" 127.0.0.1:3000/m4a -o loadTestAudio/f.m4a
-# curl --request POST --data-binary "@loadTestAudio/g.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/g.mp3
-# curl --request POST --data-binary "@loadTestAudio/g.wav" 127.0.0.1:3000/m4a -o loadTestAudio/g.m4a
-# curl --request POST --data-binary "@loadTestAudio/h.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/h.mp3
-# curl --request POST --data-binary "@loadTestAudio/h.wav" 127.0.0.1:3000/m4a -o loadTestAudio/h.m4a
-# curl --request POST --data-binary "@loadTestAudio/i.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/i.mp3
-# curl --request POST --data-binary "@loadTestAudio/i.wav" 127.0.0.1:3000/m4a -o loadTestAudio/i.m4a
+# curl --request POST --data-binary "@test/test.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/file.mp3
+# curl --request POST --data-binary "@test/test.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/file.m4a
+curl --request POST --data-binary "@loadTestAudio/input/a.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/a.mp3
+curl --request POST --data-binary "@loadTestAudio/input/a.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/a.m4a
+curl --request POST --data-binary "@loadTestAudio/input/b.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/b.mp3
+curl --request POST --data-binary "@loadTestAudio/input/b.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/b.m4a
+curl --request POST --data-binary "@loadTestAudio/input/c.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/c.mp3
+curl --request POST --data-binary "@loadTestAudio/input/c.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/c.m4a
+curl --request POST --data-binary "@loadTestAudio/input/d.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/d.mp3
+curl --request POST --data-binary "@loadTestAudio/input/d.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/d.m4a
+curl --request POST --data-binary "@loadTestAudio/input/e.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/e.mp3
+curl --request POST --data-binary "@loadTestAudio/input/e.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/e.m4a
+curl --request POST --data-binary "@loadTestAudio/input/f.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/f.mp3
+curl --request POST --data-binary "@loadTestAudio/input/f.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/f.m4a
+curl --request POST --data-binary "@loadTestAudio/input/g.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/g.mp3
+curl --request POST --data-binary "@loadTestAudio/input/g.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/g.m4a
+curl --request POST --data-binary "@loadTestAudio/input/h.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/h.mp3
+curl --request POST --data-binary "@loadTestAudio/input/h.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/h.m4a
+curl --request POST --data-binary "@loadTestAudio/input/i.wav" 127.0.0.1:3000/mp3 -o loadTestAudio/output/i.mp3
+curl --request POST --data-binary "@loadTestAudio/input/i.wav" 127.0.0.1:3000/m4a -o loadTestAudio/output/i.m4a
