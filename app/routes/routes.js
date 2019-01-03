@@ -1,7 +1,6 @@
 const {
   MP3_CODEC,
   M4A_CODEC,
-  FFMPEG_ERROR,
   FILE_LIMIT,
 } = require('../config.js');
 
@@ -12,7 +11,7 @@ const fs = require('fs');
 /* ffmpeg encoder module */
 const encoder = require('../encoder.js');
 
-/* Media Files will be uploaded as Binary Bytes */
+/* Media Files will be uploaded as Binary Blobs of Bytes */
 const bodyParser = require('body-parser');
 const rawBodyParser = bodyParser.raw({ type: '*/*', limit: FILE_LIMIT });
 
@@ -31,15 +30,16 @@ router.post('/m4a', rawBodyParser, function(req, res) {
   encodeAndDownload(M4A_CODEC, req.body, res);
 });
 
+const generateId = () => parseInt(Math.random() * 1000000000)
+
 /** Encodes a file, sending a file download response to the clietn
  * @param {string} codec - Audio Codec Enum value (from constants.js)
  * @param {file} file - Unencoded audio file
  * @param {res} res - express response for download or error
  */
 function encodeAndDownload(codec, file, res) {
-  const jobId = parseInt(Math.random() * 1000000000);
   winston.info(`Launching ${codec} Encoding Job`);
-  encoder.encode(file, codec, jobId, (err, output) => {
+  encoder.encode(file, codec, generateId(), (err, output) => {
     if (err) {
       winston.error(`Encoder Error ${err}`);
       res.status(500).send();
