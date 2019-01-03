@@ -1,4 +1,5 @@
-const {MP3_CODEC, M4A_CODEC, FFMPEG_ERROR} = require(__dirname + '/config.js');
+const { MP3_CODEC, M4A_CODEC, FFMPEG_ERROR } = require(__dirname +
+  '/config.js');
 
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
@@ -18,9 +19,25 @@ const winston = require('winston');
 exports.encode = function(file, format, fileId, callback) {
   let outputPath = gatherOutputPath(format, fileId);
   winston.info(`Encoding file ${outputPath}`);
-  writeInputFile(file, fileId, function() {
-    ffmpegCall(format, outputPath, fileId, (outputPath) => {
-      callback(outputPath);
+  writeInputFile(file, fileId, (err, result) => {
+    if (err) {
+      callback(err);
+    }
+    ffmpegCall(format, outputPath, fileId, (err, outputPath) => {
+      winston.info(typeof outputPath);
+      winston.info(`ffmpeg call completed ${outputPath}`);
+      if (err) {
+        callback(err, null);
+      } else if (outputPath == null) {
+        callback('FFMPEG_ERROR ', null);
+      } else if (outputPath.indexOf(FFMPEG_ERROR) !== -1) {
+        winston.error('error', outputPath);
+        callback(FFMPEG_ERROR + outputPath, null);
+      } else {
+        callback(null, outputPath);
+      }
+
+      // }
     });
   });
 };
@@ -45,10 +62,10 @@ function gatherOutputPath(format, id) {
 function writeInputFile(file, fileId, callback) {
   try {
     fs.writeFile(inputPath + fileId, file, '', res => {
-      callback(res);
+      callback(null, res);
     });
   } catch (e) {
-    callback(e);
+    callback(e, null);
   }
 }
 
@@ -60,15 +77,15 @@ function writeInputFile(file, fileId, callback) {
 function ffmpegCall(format, outputPath, fileId, callback) {
   ffmpegConvertCommand = ffmpeg(inputPath + fileId)
     .audioCodec(format)
-    .on('error', function(err) {
+    .on('error', err => {
       winston.error(`FFMPEG ERROR ${err}`);
       fs.unlink(inputPath + fileId, (err, res) => {
-        callback(FFMPEG_ERROR + err);
+        callback(FFMPEG_ERROR + err, null);
       });
     })
-    .on('end', function() {
+    .on('end', () => {
       fs.unlink(inputPath + fileId, (err, res) => {
-        callback(outputPath);
+        callback(null, outputPath);
       });
     })
     .save(outputPath);

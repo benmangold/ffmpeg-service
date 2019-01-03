@@ -11,7 +11,8 @@ describe('Encoder', function() {
         fs.readFileSync(__dirname + '/test.wav'),
         consts.MP3_CODEC,
         '123',
-        function(filename) {
+        function(err, filename) {
+          err ? assert.equal(0,1) : null
           assert.equal(filename, 'output123.mp3');
           fs.unlinkSync(filename);
           done();
@@ -26,7 +27,8 @@ describe('Encoder', function() {
         fs.readFileSync(__dirname + '/test.wav'),
         consts.M4A_CODEC,
         '123',
-        function(filename) {
+        function(err, filename) {
+          err ? assert.equal(0,1) : null
           assert.equal(filename, 'output123.m4a');
           fs.unlinkSync(filename);
           done();
@@ -41,8 +43,9 @@ describe('Encoder', function() {
         fs.readFileSync(__dirname + '/corrupted.wav'),
         consts.M4A_CODEC,
         '123',
-        function(val) {
-          assert.equal(val.indexOf(consts.FFMPEG_ERROR), 0);
+        function(err, val) {
+          err ? assert.equal(1,1) : null
+          assert.equal(err.indexOf(consts.FFMPEG_ERROR), 0);
           value = val;
           done();
         }

@@ -39,25 +39,25 @@ router.post('/m4a', rawBodyParser, function(req, res) {
 function encodeAndDownload(codec, file, res) {
   const jobId = parseInt(Math.random() * 1000000000);
   winston.info(`Launching ${codec} Encoding Job`);
-  encoder.encode(file, codec, jobId, output => {
-    if (output.indexOf(FFMPEG_ERROR) !== -1) {
-      winston.error('error', output);
-      res.statusCode = 500;
-      res.send(output);
+  encoder.encode(file, codec, jobId, (err, output) => {
+    if (err) {
+      winston.error(`Encoder Error ${err}`);
+      res.status(500).send();
     } else {
       winston.info(`Downloading Encoded ${codec} File ${output}`);
-      res.download(output, output, (err, res) => {
+      res.download(output, 'output', (err, res) => {
         if (err) {
-          winston.error(err);
+          winston.error(`Download Error ${err}`);
           res.status(500).send();
+        } else {
+          fs.unlink(output, (err, res) => {
+            if (err) {
+              winston.error(`File Deletion Error${err}`);
+              res.status(500).send();
+            }
+            winston.info(`Deleting encoded file ${output}`);
+          });
         }
-        fs.unlink(output, (err, res) => {
-          if (err) {
-            winston.error(err);
-            res.status(500).send();
-          }
-          winston.info(`Deleting encoded file ${output}`);
-        });
       });
     }
   });
