@@ -13,9 +13,16 @@ input
 node-ffmpeg.zip
 
 /node_modules
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-/loadTestAudio/*.wav
+
 eslist
+
+# files used by test/load.bash
+/audio/input/*.wav
+
+# target directory for test/load.bash
+/audio/output/*

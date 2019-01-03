@@ -37,7 +37,7 @@ router.post('/m4a', rawBodyParser, function(req, res) {
  * @param {res} res - express response for download or error
  */
 function encodeAndDownload(codec, file, res) {
-  const jobId = parseInt(Math.random() * 1000000000)
+  const jobId = parseInt(Math.random() * 1000000000);
   winston.info(`Launching ${codec} Encoding Job`);
   encoder.encode(file, codec, jobId, output => {
     if (output.indexOf(FFMPEG_ERROR) !== -1) {
