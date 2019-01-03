@@ -36,6 +36,8 @@ Curl Ex:
 curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/mp3 -o file.mp3
 ```
 
+see test/load.bash for an example use via bash script
+
 ## Installation
 
 Requires local Node and FFMPEG installation.
