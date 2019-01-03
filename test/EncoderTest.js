@@ -10,9 +10,11 @@ describe('Encoder', function() {
       encoder.encode(
         fs.readFileSync(__dirname + '/test.wav'),
         consts.MP3_CODEC,
-        function(val) {
-          assert.equal(val, 'output.mp3');
-          fs.unlinkSync(val);
+        '123',
+        function(err, filename) {
+          err ? assert.equal(0,1) : null
+          assert.equal(filename, 'output123.mp3');
+          fs.unlinkSync(filename);
           done();
         }
       );
@@ -24,9 +26,11 @@ describe('Encoder', function() {
       encoder.encode(
         fs.readFileSync(__dirname + '/test.wav'),
         consts.M4A_CODEC,
-        function(val) {
-          assert.equal(val, 'output.m4a');
-          fs.unlinkSync(val);
+        '123',
+        function(err, filename) {
+          err ? assert.equal(0,1) : null
+          assert.equal(filename, 'output123.m4a');
+          fs.unlinkSync(filename);
           done();
         }
       );
@@ -38,8 +42,10 @@ describe('Encoder', function() {
       encoder.encode(
         fs.readFileSync(__dirname + '/corrupted.wav'),
         consts.M4A_CODEC,
-        function(val) {
-          assert.equal(val.indexOf(consts.FFMPEG_ERROR), 0);
+        '123',
+        function(err, val) {
+          err ? assert.equal(1,1) : null
+          assert.equal(err.indexOf(consts.FFMPEG_ERROR), 0);
           value = val;
           done();
         }

@@ -4,7 +4,8 @@
   "description": "audio utilities",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev":"nodemon app.js"
   },
   "author": "",
   "license": "ISC",

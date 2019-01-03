@@ -1,11 +1,8 @@
 # ffmpeg web service
 
-A utility web service for converting audio files
+A web service for converting audio files with ffmpeg
 
 Node.js, Express, FFMPEG, Docker
-
-Currently not suited for scale, async file writes are mildly buggy and in server memory. This service is intended for personal servers or local use
-... for now
 
 ## Deployed master branch on Digital Ocean
 
@@ -36,8 +33,10 @@ https://www.dropbox.com/s/5exywmaj5o7cdn3/postMp3%20Postman%20Usage.png?dl=0
 Curl Ex:
 
 ```bash
-curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/ -o file.mp3
+curl --request POST --data-binary "@file.wav" 127.0.0.1:3000/mp3 -o file.mp3
 ```
+
+see test/curl_test.bash for an example use via bash script
 
 ## Installation
 
