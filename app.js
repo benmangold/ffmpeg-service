@@ -7,7 +7,7 @@ winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, { timestamp: true });
 
 /* Audio Conversion Routes - MP3, M4A */
-const encoderRoutes = require(__dirname + '/app/routes/routes');
+const encoderRoutes = require(`${__dirname}/app/routes/routes`);
 app.use('/', encoderRoutes);
 
 /* Expose README.md to appropriate GET routes */
