@@ -9,7 +9,6 @@ describe('README API Tests', function() {
     request(app)
       .get('/')
       .end(function(err, res) {
-        // expect(res.body.version).to.be.ok;
         expect(res.statusCode).to.equal(200);
         done();
       });
@@ -21,7 +20,6 @@ describe('README API Tests', function() {
     request(app)
       .get('/readme')
       .end(function(err, res) {
-        // expect(res.body.version).to.be.ok;
         expect(res.statusCode).to.equal(200);
         done();
       });
@@ -33,11 +31,6 @@ describe('README API Tests', function() {
     request(app)
       .post('/m4a')
       .end(function(err, res) {
-        // expect(res.body.version).to.be.ok;
-        if (err) {
-          console.log(err)
-          expect(err)
-        }
         expect(res.statusCode).to.equal(500);
         done();
       });
@@ -49,10 +42,6 @@ describe('README API Tests', function() {
     request(app)
       .post('/mp3')
       .end(function(err, res) {
-                if (err) {
-          console.log(err)
-          expect(err)
-        }
         expect(res.statusCode).to.equal(500);
         done();
       });
