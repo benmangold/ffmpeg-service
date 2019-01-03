@@ -12,7 +12,7 @@ const fs = require('fs');
 /* ffmpeg encoder module */
 const encoder = require('../encoder.js');
 
-/* Media Files as Raw Bytes Will be uploaded */
+/* Media Files will be uploaded as Binary Bytes */
 const bodyParser = require('body-parser');
 const rawBodyParser = bodyParser.raw({ type: '*/*', limit: FILE_LIMIT });
 
