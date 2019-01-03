@@ -40,7 +40,7 @@ function encodeAndDownload(codec, file, res) {
   winston.info(`Launching ${codec} Encoding Job`);
   encoder.encode(file, codec, output => {
     if (output.indexOf(FFMPEG_ERROR) !== -1) {
-      winston.log('error', output);
+      winston.error('error', output);
       res.statusCode = 500;
       res.send(output);
     } else {
