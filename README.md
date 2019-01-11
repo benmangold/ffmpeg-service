@@ -4,9 +4,6 @@ A web service for converting audio files with ffmpeg
 
 Node.js, Express, FFMPEG, Docker
 
-## Deployed master branch on Digital Ocean
-
-`http://159.89.31.235:49160/`
 
 ## Continued Development
 
