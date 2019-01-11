@@ -8,7 +8,7 @@ Node.js, Express, FFMPEG, Docker
 
 Deployed dev branch on a $5 Digital Ocean droplet (1 GB Memory / 25 GB Disk / SFO2 - Ubuntu Docker 18.06.1~ce~3 on 18.04) 
 
-157.230.129.167:3000
+[157.230.129.167:3000](http://157.230.129.167:3000)
 
 ## Continued Development
 
