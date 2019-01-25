@@ -103,15 +103,17 @@ Launch Docker Container from Docker Image, exposing port 49160
 $ docker run -p 49160:3000 -d '<image>'/'<tag>'
 ```
 
-### Running  Service Locally via Docker-Compose
+### Developing Service In Running Container via Docker-Compose
 
 ```bash
 docker-compose up -d --build
+
 docker ps # note <CONTAINER ID>
-# enter bash prompt for docker container `ffmpeg-service_app`
+
+# enter bash prompt for docker container
 docker exec -it <CONTAINER ID> /bin/bash
-# edit file in vi, ex. README.md
-vi README.md
+
+vi README.md # edit file in vi, ex. README.md
 ```
 
 ## Deploying Service on Digital Ocean Droplet with Docker
