@@ -4,9 +4,11 @@ A web service for converting audio files with ffmpeg
 
 Node.js, Express, FFMPEG, Docker
 
-## Deployed master branch on Digital Ocean
+## Deployed Service
 
-`http://159.89.31.235:49160/`
+Deployed dev branch on a $5 Digital Ocean droplet (1 GB Memory / 25 GB Disk / SFO2 - Ubuntu Docker 18.06.1~ce~3 on 18.04) 
+
+[157.230.129.167:3000](http://157.230.129.167:3000)
 
 ## Continued Development
 
@@ -149,5 +151,5 @@ Build Docker Image from Dockerfile with a set image tag. ex: bm/ffmpeg
 Launch Docker Container from Docker Image, exposing port 49160
 
 ```bash
-# docker run -p 49160:3000 -d '<image>'/'<tag>'
+# docker run -p 3000:3000 -d '<image>'/'<tag>'
 ```

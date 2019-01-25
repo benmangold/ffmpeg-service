@@ -24,7 +24,6 @@ exports.encode = function(file, format, fileId, callback) {
       callback(err);
     }
     ffmpegCall(format, outputPath, fileId, (err, outputPath) => {
-      winston.info(typeof outputPath);
       winston.info(`ffmpeg call completed ${outputPath}`);
       if (err) {
         callback(err, null);
