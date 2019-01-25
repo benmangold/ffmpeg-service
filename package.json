@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev":"nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "mocha": "^3.3.0",
+    "nodemon": "^1.18.9",
     "supertest": "^3.0.0"
   }
 }
