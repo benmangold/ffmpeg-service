@@ -2,7 +2,7 @@
 
 A web service for converting audio files with ffmpeg
 
-Node.js, Express, FFMPEG, Docker 
+Node.js, Express, FFMPEG, Docker
 
 ## Deployed Service
 
